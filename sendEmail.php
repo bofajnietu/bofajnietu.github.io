@@ -27,10 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
     
-    mail('<fryderyk.wiszniewski@gmail.com>', 'the subject', 'the message', $headers);
-    
     // Send email
-    if (mail($to, $email_subject, $email_message, $headers)) {
+    if (phpmail($to, $email_subject, $email_message, $headers)) {
         echo json_encode(['message' => 'Email sent successfully']);
     } else {
         $error_message = error_get_last()['message'] ?? 'Unknown error';
