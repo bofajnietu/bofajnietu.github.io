@@ -28,10 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $headers .= "Reply-To: $email\r\n";
     
     $headers = 'From: <test@test.com>' . "\r\n" .
+    'BCC: <fred@test.com>' . "\r\n" .
     'Reply-To: <test@test.com>';
     
-    mail('fryderyk.wiszniewski@gmail.com', 'the subject', 'the message', $headers,
-      '-fwebmaster@example.com');
+    mail('<fryderyk.wiszniewski@gmail.com>', 'the subject', 'the message', $headers);
     
     // Send email
     //if (mail($to, $email_subject, $email_message, $headers)) {
