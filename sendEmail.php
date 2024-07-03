@@ -27,15 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
     
-    $headers = 'From: <test@test.com>' . "\r\n" .
-    'BCC: <fred@test.com>' . "\r\n" .
-    'Reply-To: <test@test.com>';
-    
     mail('<fryderyk.wiszniewski@gmail.com>', 'the subject', 'the message', $headers);
     
     // Send email
-    //if (mail($to, $email_subject, $email_message, $headers)) {
-    if(mail("fryderyk.wiszniewski@gmail.com", "1", "2", "3"))
+    if (mail($to, $email_subject, $email_message, $headers)) {
         echo json_encode(['message' => 'Email sent successfully']);
     } else {
         $error_message = error_get_last()['message'] ?? 'Unknown error';
