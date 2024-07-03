@@ -1631,12 +1631,8 @@
   
   <div class="form-inner-wrapper"  hidden>
     <form
-       data-success-redirect=""
        data-dynamic-strings
        autocomplete="on"
-       
-       method="POST"
-       action="sendEmail.php">
       
         <div class="field-list clear">
 
@@ -1965,6 +1961,28 @@
       <div class="hidden form-submission-text"><p class="" style="white-space:pre-wrap;">Dziękuję za wiadomość! Zazwyczaj odpowiadam w przeciągu 24 godzin.  </p></div>
       <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Collect form data
+            const formData = new FormData(this);
+
+            // Send data via AJAX
+            fetch('sendEmail.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Display response message
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to send email');
+            });
+        });
+    </script>
   </div>
 </div>
 </div></div></div></div></div>
