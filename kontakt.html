@@ -1630,26 +1630,12 @@
   
   <div class="form-inner-wrapper"  hidden>
     <form
-       data-form-id="667959c00c77de4654109d10"
        data-success-redirect=""
        data-dynamic-strings
        autocomplete="on"
        
        method="POST"
-       action="https://pracowniabofajnietu.squarespace.com"
-       novalidate
-       onsubmit="return (function (form) {
-  Y.use('squarespace-form-submit', 'node', function usingFormSubmit(Y) {
-    (new Y.Squarespace.FormSubmit(form)).submit({
-      formId: '667959c00c77de4654109d10',
-      collectionId: '667959c00c77de4654109d12',
-      objectName: 'a5abd14659090547a210'
-    });
-  });
-  return false;
-})(this);"
-       
-    >
+       action="sendEmail.php">
       
         <div class="field-list clear">
 
@@ -1678,7 +1664,7 @@
                     class="field-element text"
                     type="text"
                     id="text-125165ed-77c5-4c23-8270-4dcd0ba3a0df-field"
-                    
+                    name="name"
                     aria-required="true"
                 />
               </div>
@@ -1843,6 +1829,7 @@
                       maxlength="3"
                       data-title="Areacode"
                       aria-required="true"
+                      name="phone"
                     />
                     <span class="caption-text">(###)</span>
                   </label>
@@ -1904,7 +1891,7 @@
                 <textarea
                     class="field-element "
                     id="textarea-yui_3_17_2_1_1554218195091_8246-field"
-                    
+                    name="message"
                     aria-required="true"
                 ></textarea>
               </div>
