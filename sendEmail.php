@@ -27,10 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
     
+    // Error logging
+    $log_file = 'email_error_log.txt';
+    
     // Send email
     if (mail($to, $email_subject, $email_message, $headers)) {
         echo json_encode(['message' => 'Email sent successfully']);
     } else {
+        $error_message = error_get_last()['message'] ?? 'Unknown error';
+        file_put_contents($log_file, "Failed to send email: $error_message\n", FILE_APPEND);
         echo json_encode(['message' => 'Failed to send email']);
     }
 } else {
