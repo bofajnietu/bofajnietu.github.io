@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     mail('fryderyk.wiszniewski@gmail.com', 'the subject', 'the message', $headers,
       '-fwebmaster@example.com');
-    ?>
     
     // Send email
     //if (mail($to, $email_subject, $email_message, $headers)) {
