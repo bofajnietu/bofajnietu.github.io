@@ -336,6 +336,9 @@
         Skip to Content
       </a>
 <style>
+    #hidden-submission-text {
+            display: none;
+    }
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
         .header-blur-background {
         }
@@ -1102,7 +1105,7 @@
        data-dynamic-strings
        autocomplete="on"
        action="https://docs.google.com/forms/d/e/1FAIpQLScWYOXc22tKxaFcQrw64C5prQjlW5veeAoOo-Y-Z6R5P34Q2Q/formResponse?"
-       target="hidden_iframe" onsubmit="submitted=true;">
+       target="hidden_iframe" onsubmit="handleSubmit(event)">
         <div class="field-list clear">
               <div id="text-125165ed-77c5-4c23-8270-4dcd0ba3a0df" class="form-item field text required">
             <label class="title" for="text-125165ed-77c5-4c23-8270-4dcd0ba3a0df-field">
@@ -1114,7 +1117,7 @@
                     type="text"
                     id="entry.2110159309"
                     name="entry.2110159309"
-                    aria-required="true"
+                    aria-required="true" required
                 />
               </div>
               <div id="email-yui_3_17_2_1_1554218195091_8244" class="form-item field email required">
@@ -1130,6 +1133,7 @@
                     autocomplete="email"
                     spellcheck="false"
                     aria-required="true"
+                    required
                 />
               </div>
               <div class="form-item field phone required">
@@ -1145,7 +1149,7 @@
                 aria-required="true"
                 id="entry.662937365"
                 name="entry.662937365"
-                oninput="formatPhoneNumber(this)"
+                oninput="formatPhoneNumber(this)" required
               />
             </div>
           </div>
@@ -1173,7 +1177,7 @@
                     class="field-element "
                     name="entry.546568345"
                     id="entry.546568345"
-                    aria-required="true"
+                    aria-required="true" required
                 ></textarea>
               </div>
         </div>
@@ -1194,26 +1198,16 @@
           value="Wyślij"
         />
       </div>
-      <div class="hidden form-submission-text"><p class="" style="white-space:pre-wrap;">Dziękuję za wiadomość! Zazwyczaj odpowiadam w przeciągu 24 godzin.  </p></div>
-      <div class="hidden form-submission-html" data-submission-html=""></div>
     </form>
-   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
-    
-<script src="assets/js/jquery.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function() {
-  var submitted = false;
-  $('#gform').on('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission behavior
-    if (!submitted) {
-      $('#gform *').fadeOut(2000, function() {
-        $('#gform').prepend('<p>Your submission has been processed...</p>');
-      });
-      submitted = true;
-    }
-  });
-});
-</script>
+      <div class="hidden form-submission-text" id="hidden-submission-text"><p class="" style="white-space:pre-wrap;">Dziękuję za wiadomość! Zazwyczaj odpowiadam w przeciągu 24 godzin.  </p></div>
+      <div class="hidden form-submission-html" data-submission-html=""></div>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            document.getElementById('gform').style.display = 'none'; // Hide the form
+            document.getElementById('hidden-submission-text').style.display = 'block'; // Show the thank you message
+        }
+    </script>
     
   </div>
 </div>
