@@ -1113,8 +1113,8 @@ $(document).ready(function() {
         function handleSubmit(event) {
             event.preventDefault(); // Prevent the default form submission behavior
             submitted = true;
-            document.getElementById('myForm').style.display = 'none'; // Hide the form
-            document.getElementById('message').style.display = 'block'; // Show the thank you message
+            document.getElementById('gform').style.display = 'none'; // Hide the form
+            document.getElementById('hidden-submission-text').style.display = 'block'; // Show the thank you message
         }
 </script>
     
@@ -1223,13 +1223,6 @@ $(document).ready(function() {
     
       <div class="hidden form-submission-text" id="hidden-submission-text"><p class="" style="white-space:pre-wrap;">Dziękuję za wiadomość! Zazwyczaj odpowiadam w przeciągu 24 godzin.  </p></div>
       <div class="hidden form-submission-html" data-submission-html=""></div>
-    <script>
-        function handleSubmit(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
-            document.getElementById('gform').style.display = 'none'; // Hide the form
-            document.getElementById('hidden-submission-text').style.display = 'block'; // Show the thank you message
-        }
-    </script>
     
   </div>
 </div>
