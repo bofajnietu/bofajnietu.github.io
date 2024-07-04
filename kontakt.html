@@ -1100,14 +1100,12 @@
 >
   
 <script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">var submitted=false;</script>
 <script type="text/javascript">
-$(document).ready(function() {
-  var submitted = false;
-  $('#gform').on('submit', function(e) {
-    e.preventDefault(); // Prevent the default form submission behavior
-    }
+$('#gform').on('submit', function(e) {
+  $('#gform *').fadeOut(2000);
+  $('#gform').prepend('Your submission has been processed...');
   });
-});
 </script>
 <script>
         function handleSubmit(event) {
@@ -1120,11 +1118,9 @@ $(document).ready(function() {
   <div class="form-inner-wrapper"  hidden>
     <form
        name="gform" id="gform" enctype="text/plain"
-       data-success-redirect=""
-       data-dynamic-strings
        autocomplete="on"
        action="https://docs.google.com/forms/d/e/1FAIpQLScWYOXc22tKxaFcQrw64C5prQjlW5veeAoOo-Y-Z6R5P34Q2Q/formResponse?"
-       target="hidden_iframe" onsubmit="submitted=true; handleSubmit(event)">
+       target="hidden_iframe" onsubmit="submitted=true;>
         <div class="field-list clear">
               <div id="text-125165ed-77c5-4c23-8270-4dcd0ba3a0df" class="form-item field text required">
             <label class="title" for="text-125165ed-77c5-4c23-8270-4dcd0ba3a0df-field">
