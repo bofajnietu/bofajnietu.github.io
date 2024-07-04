@@ -1200,12 +1200,19 @@
    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
     
 <script src="assets/js/jquery.min.js"></script>
-<script type="text/javascript">var submitted=false;</script>
 <script type="text/javascript">
-$('#gform').on('submit', function(e) {
-  $('#gform *').fadeOut(2000);
-  $('#gform').prepend('Dziękuję za wiadomość! Zazwyczaj odpowiadam w przeciągu 24 godzin.');
+$(document).ready(function() {
+  var submitted = false;
+  $('#gform').on('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission behavior
+    if (!submitted) {
+      $('#gform *').fadeOut(2000, function() {
+        $('#gform').prepend('<p>Your submission has been processed...</p>');
+      });
+      submitted = true;
+    }
   });
+});
 </script>
     
   </div>
