@@ -1105,11 +1105,9 @@ $(document).ready(function() {
   var submitted = false;
   $('#gform').on('submit', function(e) {
     e.preventDefault(); // Prevent the default form submission behavior
-    if (!submitted) {
-      $('#gform *').fadeOut(2000, function() {
-        $('#gform').prepend('<p>Your submission has been processed...</p>');
-      });
-      submitted = true;
+    document.getElementById('gform').style.display = 'none'; // Hide the form
+    document.getElementById('hidden form-submission-text').style.display = 'block'; // Show the thank you message
+
     }
   });
 });
