@@ -1102,7 +1102,7 @@
 <script type="text/javascript">var submitted=false;</script>
 <script>
         function handleSubmit(event) {
-            event.preventDefault(); // Prevent the default form submission behavior
+            //event.preventDefault(); // Prevent the default form submission behavior
             document.getElementById('gform').style.display = 'none'; // Hide the form
             document.getElementById('hidden-submission-text').style.display = 'block'; // Show the thank you message
         }
@@ -1115,7 +1115,7 @@
        data-success-redirect=""
        data-dynamic-strings
        action="https://docs.google.com/forms/d/e/1FAIpQLScWYOXc22tKxaFcQrw64C5prQjlW5veeAoOo-Y-Z6R5P34Q2Q/formResponse?"
-       target="hidden_iframe" onsubmit="submitted=true;">
+       target="hidden_iframe" onsubmit="submitted=true; handleSubmit(event)">
         <div class="field-list clear">
               <div id="text-125165ed-77c5-4c23-8270-4dcd0ba3a0df" class="form-item field text required">
             <label class="title" for="text-125165ed-77c5-4c23-8270-4dcd0ba3a0df-field">
