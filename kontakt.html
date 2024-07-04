@@ -339,6 +339,12 @@
     #hidden-submission-text {
             display: none;
     }
+    #entry\\.546568345 {
+        min-height: 50px;
+        height: auto;
+        overflow-y: hidden;
+        resize: none; /* Prevent manual resizing */
+    }
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
         .header-blur-background {
         }
@@ -1213,6 +1219,21 @@
     
       <div class="hidden form-submission-text" id="hidden-submission-text"><p class="" style="white-space:pre-wrap;">Dziękuję za wiadomość! Zazwyczaj odpowiadam w przeciągu 24 godzin.  </p></div>
       <div class="hidden form-submission-html" data-submission-html=""></div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const textarea = document.getElementById('entry.546568345');
+
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        });
+
+        // Initial adjustment to fit content
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+    });
+</script>
     
   </div>
 </div>
