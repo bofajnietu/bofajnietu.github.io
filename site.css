@@ -6803,7 +6803,7 @@ html.squarespace-damask.is-expanded .sqs-blockStatus {
     border: 1px solid #d0d0d0;
     border-radius: 4px;
     color: #3e3e3e;
-    font-family: 'Clarkson','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: Arial;
     line-height: 1em;
     font-weight: normal;
     letter-spacing: normal;
@@ -8963,7 +8963,7 @@ body.sqs-lightbox-open {
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -9874,7 +9874,7 @@ body.sqs-lightbox-open {
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -10470,7 +10470,7 @@ body.sqs-lightbox-open {
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -10505,7 +10505,7 @@ body.sqs-lightbox-open {
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -10696,7 +10696,7 @@ div.sqs-block-opentable-v2 .ot-dtp-picker-selector-link {
 
 div.sqs-block-opentable-v2 .oc-loading {
     text-align: center;
-    font-family: sans-serif;
+    font-family: Arial;
     line-height: 180px
 }
 
@@ -10885,7 +10885,7 @@ div.sqs-block-opentable-v2 .squarespace-opentable-new-age-wrapper.opentable-bloc
     border: 1px solid #ccc;
     background: #fafafa;
     color: #000;
-    font-family: sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: normal;
     box-sizing: border-box;
@@ -10907,7 +10907,7 @@ div.sqs-block-opentable-v2 .squarespace-opentable-new-age-wrapper.opentable-bloc
     bottom: 16px;
     left: 8px;
     color: #aaa;
-    font-family: sans-serif;
+    font-family: Arial;
     font-size: 13px;
     line-height: 16px
 }
@@ -11058,7 +11058,7 @@ div.sqs-block-opentable-v2 .squarespace-opentable-new-age-wrapper.opentable-bloc
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -11110,7 +11110,7 @@ div.sqs-block-opentable-v2 .squarespace-opentable-new-age-wrapper.opentable-bloc
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -11191,7 +11191,7 @@ div.sqs-block-opentable-v2 .squarespace-opentable-new-age-wrapper.opentable-bloc
     position: absolute;
     color: #333;
     font-size: 22px;
-    font-family: Arial,Helvetica,sans-serif;
+    font-family: Arial;
     font-style: normal;
     width: 22px;
     line-height: 22px;
@@ -11384,7 +11384,7 @@ html.sqs-modal-lightbox-open,html.sqs-modal-lightbox-open body {
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -12073,7 +12073,7 @@ body:not(.tweak-product-quick-view-lightbox-show-close-button) .sqs-product-quic
     color: #fff;
     background-color: #272727;
     border-width: 0;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-size: 12px;
     line-height: 1em;
     font-weight: normal;
@@ -17890,7 +17890,7 @@ body:not(.button-style-default) .tock-block div#Tock_widget_container>div.TockWi
 }
 
 .sqs-product-quick-view-button-wrapper {
-    font-family: Helvetica,Arial,sans-serif;
+    font-family: Arial;
     font-weight: normal;
     font-style: normal;
     font-size: 12px;
