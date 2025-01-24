@@ -27840,7 +27840,7 @@ body.tweak-transparent-header .header:not(.shrink):not(.transparent-header-theme
 
 @media screen and (max-width: 767px ) {
     .header-title-logo a {
-        max-height:50px
+        max-height: 50px
     }
 
     .header-title-logo img {
