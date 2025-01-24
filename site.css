@@ -28515,7 +28515,7 @@ body.tweak-transparent-header .header:not(.shrink):not(.transparent-header-theme
 
     .header .header-mobile-layout-logo-left-nav-right .header-display-mobile .header-burger {
         justify-content: flex-end;
-        flex: 0 0 50px
+        flex: 0 0 60px
     }
 
     .header .header-mobile-layout-logo-left-nav-right .header-display-mobile .header-actions {
