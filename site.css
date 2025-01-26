@@ -18547,7 +18547,7 @@ img[data-src]:not([src]):not([srcset]) {
 }
 
 .page-section.vertical-alignment--top:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.section-height--custom):not(.editmode-changing-rowcount).section-height--small>.content-wrapper {
-    padding-bottom: 6.6vmax
+    padding-bottom: 2vmax
 }
 
 .page-section.vertical-alignment--top:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.section-height--custom):not(.editmode-changing-rowcount).section-height--medium>.content-wrapper {
