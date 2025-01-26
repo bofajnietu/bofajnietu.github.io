@@ -7,7 +7,30 @@
 <base href="">
 <meta charset="utf-8" />
 <title>BoFajnieTu</title>
-<meta http-equiv="Accept-CH" content="Sec-CH-UA-Platform-Version, Sec-CH-UA-Model" /><link rel="icon" type="image/x-icon" href="/images/LogoB130.png"/>
+<meta http-equiv="Accept-CH" content="Sec-CH-UA-Platform-Version, Sec-CH-UA-Model" />
+    
+<link id="favicon" rel="icon" type="image/x-icon" href="/images/LogoB130.png"/>
+<script>
+    // Function to dynamically set the favicon based on the theme
+    function setFavicon(theme) {
+      const favicon = document.getElementById('favicon');
+      if (theme === 'dark') {
+        favicon.setAttribute('href', '/images/LogoW130.png');
+      } else {
+        favicon.setAttribute('href', '/images/LogoB130.png');
+      }
+    }
+
+    // Detect the initial theme
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setFavicon(isDarkMode ? 'dark' : 'light');
+
+    // Listen for theme changes and update favicon dynamically
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+      setFavicon(event.matches ? 'dark' : 'light');
+    });
+</script>
+    
 <link rel="canonical" href="https://pracowniabofajnietu.squarespace.com"/>
 <meta property="og:site_name" content="BoFajnieTu"/>
 <meta property="og:title" content="BoFajnieTu"/>
