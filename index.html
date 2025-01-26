@@ -9,31 +9,7 @@
 <title>BoFajnieTu</title>
 <meta http-equiv="Accept-CH" content="Sec-CH-UA-Platform-Version, Sec-CH-UA-Model" />
     
-<link id="favicon" rel="icon" type="image/png" href="/images/LogoW130.png"/>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const favicon = document.getElementById('favicon');
-
-      // Function to dynamically set the favicon
-      function setFavicon(theme) {
-        const timestamp = new Date().getTime(); // Add timestamp to avoid caching
-        if (theme === 'dark') {
-          favicon.setAttribute('href', `favicon-dark.png?${timestamp}`);
-        } else {
-          favicon.setAttribute('href', `favicon-light.png?${timestamp}`);
-        }
-      }
-
-      // Detect the initial theme
-      const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setFavicon(isDarkMode ? 'dark' : 'light');
-
-      // Listen for theme changes
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-        setFavicon(event.matches ? 'dark' : 'light');
-      });
-    });
-</script>
+<link rel="icon" type="image/png" href="/images/LogoW130.png"/>
     
 <link rel="canonical" href="https://pracowniabofajnietu.squarespace.com"/>
 <meta property="og:site_name" content="BoFajnieTu"/>
