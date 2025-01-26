@@ -18484,7 +18484,7 @@ img[data-src]:not([src]):not([srcset]) {
 }
 
 .page-section.section-height--small:not(.content-collection):not(.gallery-section):not(.user-items-list-section) {
-    min-height: 33vh
+    min-height: 0vh
 }
 
 .page-section.section-height--medium:not(.content-collection):not(.gallery-section):not(.user-items-list-section) {
