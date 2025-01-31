@@ -1405,12 +1405,9 @@
   data-button-size="medium"
   data-button-type="primary"
 >
-  <a
-    href="/wnetrza"
-    class="sqs-block-button-element--medium sqs-button-element--primary sqs-block-button-element"
-  >
-    Poznaj szczegóły oferty
-  </a>
+  <a href="/wnetrza" class="szczegoly">
+  Poznaj szczegóły oferty <span class="arrow">›</span>
+</a>
 </div>
 </div></div></div><div class="fe-block fe-block-f42f279097700fe7e147"><div class="sqs-block image-block sqs-block-image sqs-stretched" data-block-type="5" id="block-f42f279097700fe7e147"><div class="sqs-block-content">
   <svg data-image-mask-id="f42f279097700fe7e147" width="0" height="0" style="position: absolute;">
@@ -1482,12 +1479,35 @@
   data-button-size="medium"
   data-button-type="primary"
 >
-  <a
-    href="/ogrody"
-    class="sqs-block-button-element--medium sqs-button-element--primary sqs-block-button-element"
-  >
-    Poznaj szczegóły oferty
-  </a>
+  <a href="/ogrody" class="szczegoly">
+  Poznaj szczegóły oferty <span class="arrow">›</span>
+</a>
+
+<style>
+  .szczegoly {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 120px; 
+    padding: 8px 12px; 
+    border: 1px solid black; 
+    border-radius: 8px; 
+    background: #f0f0f0; 
+    font-family: sans-serif; 
+    font-size: 14px; 
+    cursor: pointer; 
+    text-decoration: none; 
+    color: black;
+  }
+
+  .szczegoly:hover {
+    background: #e0e0e0;
+  }
+
+  .arrow {
+    font-weight: bold;
+  }
+</style>
 </div>
 </div></div></div></div></div>
     </div>
