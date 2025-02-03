@@ -1103,7 +1103,6 @@
   <div id="form-submission-html-667959c00c77de4654109d10" class="sqs-form-block-submission-html" data-submission-html=""></div>
 <div class="form-wrapper"
 >
-  
 <script type="text/javascript">var submitted=false;</script>
 <script>
         function handleSubmit(event) {
@@ -1112,7 +1111,6 @@
             document.getElementById('hidden-submission-text').style.display = 'block'; // Show the thank you message
         }
 </script>
-    
   <div class="form-inner-wrapper"  hidden>
     <form
        name="gform" id="gform" enctype="text/plain"
@@ -1168,17 +1166,14 @@
               />
             </div>
           </div>
-
           <script>
             function formatPhoneNumber(input) {
               // Remove all non-digit characters
               let value = input.value.replace(/\D/g, '');
-          
               // Split the value into parts
               let part1 = value.slice(0, 3);
               let part2 = value.slice(3, 6);
               let part3 = value.slice(6, 11);
-          
               // Join the parts with spaces
               input.value = [part1, part2, part3].filter(part => part).join(' ');
             }
@@ -1215,25 +1210,20 @@
       </div>
     </form>
        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {}"></iframe>
-    
       <div class="hidden form-submission-text" id="hidden-submission-text"><p class="" style="white-space:pre-wrap;">Dziękuję za wiadomość! Zazwyczaj odpowiadam w przeciągu 24 godzin.  </p></div>
       <div class="hidden form-submission-html" data-submission-html=""></div>
-    
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const textarea = document.getElementById('entry.546568345');
-
         textarea.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = this.scrollHeight + 'px';
         });
-
         // Initial adjustment to fit content
         textarea.style.height = 'auto';
         textarea.style.height = textarea.scrollHeight + 'px';
     });
 </script>
-    
   </div>
 </div>
 </div></div></div></div></div>
