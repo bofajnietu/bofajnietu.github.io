@@ -1322,7 +1322,7 @@
   display: grid;
   position: relative;
   grid-area: 1/1/-1/-1;
-  grid-template-rows: repeat(60,minmax(24px, auto));
+  grid-template-rows: repeat(14,minmax(24px, auto));
   grid-template-columns:
     minmax(var(--grid-gutter), 1fr)
     repeat(8, minmax(0, var(--cell-max-width)))
@@ -1340,7 +1340,7 @@
     --inset-padding: 0vw;
     --row-height-scaling-factor: 0.0215;
     --container-width: min(var(--sqs-site-max-width, 1500px), calc(100vw - var(--sqs-site-gutter, 4vw) * 2 - var(--inset-padding) ));
-    grid-template-rows: repeat(7,minmax(calc(var(--container-width) * var(--row-height-scaling-factor)), auto));
+    grid-template-rows: repeat(2,minmax(calc(var(--container-width) * var(--row-height-scaling-factor)), auto));
     grid-template-columns:
       minmax(var(--grid-gutter), 1fr)
       repeat(24, minmax(0, var(--cell-max-width)))
@@ -1359,9 +1359,17 @@
   .fe-block-6c49e712a0d7dfbbd705 .sqs-block-alignment-wrapper {
     align-items: flex-start;
   }
+        .bottomlinks {
+    grid-area: 7/2/15/10;
+    z-index: 0;
+    }
+        .copyright {
+    grid-area: 17/2/17/10;
+    z-index: 0;
+    }
   @media (min-width: 768px) {
     .fe-block-6c49e712a0d7dfbbd705 {
-      grid-area: 1/2/3/16;
+      grid-area: 1/2/3/13;
       z-index: 1;
     position: sticky;
     top: calc(0px + var(--header-fixed-top-offset, 0px));
@@ -1372,7 +1380,17 @@
     .fe-block-6c49e712a0d7dfbbd705 .sqs-block-alignment-wrapper {
       align-items: flex-start;
     }
+    .bottomlinks {
+    grid-area: 1/20/3/26;
+    z-index: 0;
+    }
+    .copyright {
+    grid-area: 8/11/8/18;
+    z-index: 0;
+    }
   }
+    
+        
   .fe-block-aefe628c1c57ad1cfeed {
     grid-area: 7/2/13/10;
     z-index: 2;
@@ -1605,166 +1623,58 @@
       align-items: flex-start;
     }
   }
-</style><div class="fluid-engine fe-66794c0284324035e9bb5b31"><div class="fe-block fe-block-6c49e712a0d7dfbbd705 sqs-position-sticky"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-6c49e712a0d7dfbbd705"><div class="sqs-block-content">
-<div class="sqs-html-content">
+</style><div class="fluid-engine fe-66794c0284324035e9bb5b31">
+
+  
+<div class="fe-block fe-block-6c49e712a0d7dfbbd705 sqs-position-sticky" style="mix-blend-mode: normal; --sticky-original-position: 102px; --block-height: 261px; top: calc(var(--sticky-original-position) + 75px);"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="{&quot;topLeft&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0},&quot;topRight&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0},&quot;bottomLeft&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0},&quot;bottomRight&quot;:{&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0}}" id="block-6c49e712a0d7dfbbd705"><div class="">
+<div class="">
   <h4 style="white-space:pre-wrap;">Pracownia BoFajnieTu</h4>
 </div>
-</div></div></div><div class="fe-block fe-block-aefe628c1c57ad1cfeed sqs-position-sticky"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-aefe628c1c57ad1cfeed"><div class="sqs-block-content">
-<div class="sqs-html-content">
-  <p class="" style="white-space:pre-wrap;">Paula Wiszniewska</p>
+</div><div><div>
+<div>
+  <p style="">Paula Wiszniewska</p><p style="">al. Marylskiego 158</p><p style="">05-825 Książenice
+</p>
 </div>
-</div></div></div><div class="fe-block fe-block-15c514f985aba11b7328"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-15c514f985aba11b7328"><div class="sqs-block-content">
-<div class="sqs-html-content">
-  <p class="" style="white-space:pre-wrap;">al. Marylskiego 158</p>
+</div></div></div>
 </div>
-</div></div></div><div class="fe-block fe-block-8ac65d14a68cd66e757c sqs-position-sticky"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-8ac65d14a68cd66e757c"><div class="sqs-block-content">
-<div class="sqs-html-content">
-  <p class="" style="white-space:pre-wrap;">05-825 Książenice</p>
-</div>
-</div></div></div><div class="fe-block fe-block-yui_3_17_2_1_1719310564787_17756 sqs-position-sticky"><div class="sqs-block image-block sqs-block-image sqs-stretched" data-block-type="5" id="block-yui_3_17_2_1_1719310564787_17756"><div class="sqs-block-content">
-    <div
-      class="
-        image-block-outer-wrapper
-        layout-caption-below
-        design-layout-fluid
-        image-position-center
-        combination-animation-site-default
-        individual-animation-site-default
-      "
-      data-test="image-block-fluid-outer-wrapper"
-    >
-      <div
-        class="fluid-image-animation-wrapper sqs-image sqs-block-alignment-wrapper"
-        data-animation-role="image"
-      >
-        <div
-          class="fluid-image-container sqs-image-content"
-          style="overflow: hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);position: relative;width: 100%;height: 100%;"
-        >
-              <div class="content-fit">
-            <img data-stretch="false" data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png" data-image-dimensions="100x100" data-image-focal-point="0.5,0.5" alt="" data-load="false" elementtiming="system-image-block" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png" width="100" height="100" alt="" sizes="(max-width: 640px) 100vw, (max-width: 767px) 100vw, 4.166666666666666vw" style="display:block;object-fit: contain; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
-            <div class="fluidImageOverlay"></div>
-              </div>
-        </div>
-      </div>
-    </div>
-    <style>
-      .sqs-block-image .sqs-block-content {
-        height: 100%;
-        width: 100%;
-      }
-        .fe-block-yui_3_17_2_1_1719310564787_17756 .fluidImageOverlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          mix-blend-mode: normal;
-            opacity: 0;
+<div class="bottomlinks"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-ca353587502df7bffc11"><div class="sqs-block-content">
+<style>
+        .image-container {
+            display: flex; /* Aligns the image and text side by side */
+            align-items: center; /* Vertically centers text with the image */
+            margin: 10px 0; /* Adds spacing between each pair */
+        }
+        .image-container img {
+            width: 50px; /* Set a width for the images */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 10px; /* Add space between the image and the text */
         }
     </style>
-</div></div></div><div class="fe-block fe-block-yui_3_17_2_1_1719310564787_16672 sqs-position-sticky"><div class="sqs-block image-block sqs-block-image sqs-stretched" data-block-type="5" id="block-yui_3_17_2_1_1719310564787_16672"><div class="sqs-block-content">
-    <div
-      class="
-        image-block-outer-wrapper
-        layout-caption-below
-        design-layout-fluid
-        image-position-center
-        combination-animation-site-default
-        individual-animation-site-default
-      "
-      data-test="image-block-fluid-outer-wrapper"
-    >
-      <div
-        class="fluid-image-animation-wrapper sqs-image sqs-block-alignment-wrapper"
-        data-animation-role="image"
-      >
-        <div
-          class="fluid-image-container sqs-image-content"
-          style="overflow: hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);position: relative;width: 100%;height: 100%;"
-        >
-              <div class="content-fit">
-            <img data-stretch="false" data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png" data-image-dimensions="50x50" data-image-focal-point="0.5,0.5" alt="" data-load="false" elementtiming="system-image-block" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png" width="50" height="50" alt="" sizes="(max-width: 640px) 100vw, (max-width: 767px) 100vw, 4.166666666666666vw" style="display:block;object-fit: contain; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
-            <div class="fluidImageOverlay"></div>
-              </div>
-        </div>
-      </div>
-    </div>
-    <style>
-      .sqs-block-image .sqs-block-content {
-        height: 100%;
-        width: 100%;
-      }
-        .fe-block-yui_3_17_2_1_1719310564787_16672 .fluidImageOverlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          mix-blend-mode: normal;
-            opacity: 0;
-        }
-    </style>
-</div></div></div><div class="fe-block fe-block-yui_3_17_2_1_1719310564787_18933 sqs-position-sticky"><div class="sqs-block image-block sqs-block-image sqs-stretched" data-block-type="5" id="block-yui_3_17_2_1_1719310564787_18933"><div class="sqs-block-content">
-    <div
-      class="
-        image-block-outer-wrapper
-        layout-caption-below
-        design-layout-fluid
-        image-position-center
-        combination-animation-site-default
-        individual-animation-site-default
-      "
-      data-test="image-block-fluid-outer-wrapper"
-    >
-      <div
-        class="fluid-image-animation-wrapper sqs-image sqs-block-alignment-wrapper"
-        data-animation-role="image"
-      >
-        <div
-          class="fluid-image-container sqs-image-content"
-          style="overflow: hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);position: relative;width: 100%;height: 100%;"
-        >
-            <a
-              class="sqs-block-image-link content-fit"
-              href="https://www.instagram.com/bo_fajnie_tu/"
-              target="_blank"
-            >
-            <img data-stretch="false" data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png" data-image-dimensions="100x100" data-image-focal-point="0.5,0.5" alt="" data-load="false" elementtiming="system-image-block" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png" width="100" height="100" alt="" sizes="(max-width: 640px) 100vw, (max-width: 767px) 100vw, 4.166666666666666vw" style="display:block;object-fit: contain; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
-            <div class="fluidImageOverlay"></div>
-            </a>
-        </div>
-      </div>
-    </div>
-    <style>
-      .sqs-block-image .sqs-block-content {
-        height: 100%;
-        width: 100%;
-      }
-        .fe-block-yui_3_17_2_1_1719310564787_18933 .fluidImageOverlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          mix-blend-mode: normal;
-            opacity: 0;
-        }
-    </style>
-</div></div></div><div class="fe-block fe-block-ca353587502df7bffc11 sqs-position-sticky"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-ca353587502df7bffc11"><div class="sqs-block-content">
-<div class="sqs-html-content">
-  <p class="" style="white-space:pre-wrap;">paula.wiszniewska@gmail.com</p>
+
+<div>
+  
+<div class="image-container">
+        <img src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/f497e1ce-932c-442a-a628-b1a1d74bcc29/icons8-mail-100+%281%29.png" alt="icon">
+        <a href= "mailto: paula.wiszniewska@gmail.com" style="white-space:pre-wrap;">paula.wiszniewska@gmail.com</a>
 </div>
-</div></div></div><div class="fe-block fe-block-422c561ad77ec413063c sqs-position-sticky"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-422c561ad77ec413063c"><div class="sqs-block-content">
-<div class="sqs-html-content">
-  <p class="" style="white-space:pre-wrap;">+48 508 905 868</p>
+  <div class="image-container">
+        <img src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/3b0d4227-fe30-4744-890a-2dff774014a4/icons8-phone-50.png" alt="icon">
+        <p class="" style="white-space:pre-wrap;">+48 508 905 868</p>
 </div>
-</div></div></div><div class="fe-block fe-block-3917a47d4f0901b23bca sqs-position-sticky"><div class="sqs-block html-block sqs-block-html" data-blend-mode="NORMAL" data-block-type="2" data-border-radii="&#123;&quot;topLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;topRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomLeft&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;,&quot;bottomRight&quot;:&#123;&quot;unit&quot;:&quot;px&quot;,&quot;value&quot;:0.0&#125;&#125;" id="block-3917a47d4f0901b23bca"><div class="sqs-block-content">
-<div class="sqs-html-content">
-  <p class="" style="white-space:pre-wrap;">https://www.instagram.com/bo_fajnie_tu/</p>
+  <div class="image-container">
+        <img src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/d7e84303-07b9-48f9-9781-24e61d6e36a9/icons8-instagram-100.png" alt="icon">
+        <a href="https://www.instagram.com/bo_fajnie_tu/" style="white-space:pre-wrap;">instagram.com/bo_fajnie_tu</a>
 </div>
-</div></div></div></div></div>
+
+</div>
+  
+  </div></div>
     </div>
+
+  <div class="copyright" style="display: flex; justify-content: center; align-items: center;">
+  <p style="white-space:nowrap; font-family: 'Courier New', monospace;">© 2025 BoFajnieTu</p>
+</div>
+
   </div>
 </section>
 </footer>
