@@ -4003,7 +4003,7 @@
     --portfolio-grid-overlay-title-font-line-height: var(--heading-font-line-height);
     --portfolio-grid-overlay-title-font-font-size: var(--heading-3-size);
     --portfolio-grid-overlay-title-font-font-size-value: var(--heading-3-size-value);
-    --header-button-font-font-family: proxima-nova;
+    --header-button-font-font-family: arial;
     --header-button-font-font-style: normal;
     --header-button-font-font-weight: 500;
     --header-button-font-text-transform: none;
@@ -12626,12 +12626,12 @@ h1,h2,h3,h4 {
 }
 
 #siteWrapper .sqs-button-element--primary,.sqs-block-form-lightbox .sqs-button-element--primary {
-    font-family: var(--primary-button-font-font-family);
-    font-style: var(--primary-button-font-font-style);
-    font-weight: var(--primary-button-font-font-weight);
-    line-height: var(--primary-button-font-line-height);
-    letter-spacing: var(--primary-button-font-letter-spacing);
-    text-transform: var(--primary-button-font-text-transform)
+    font-family: var(--header-button-font-font-family);
+    font-style: var(--header-button-font-font-style);
+    font-weight: var(--header-button-font-font-weight);
+    line-height: var(--header-button-font-line-height);
+    letter-spacing: var(--header-button-font-letter-spacing);
+    text-transform: var(--header-button-font-text-transform)
 }
 
 @media screen and (max-width: 767px ) and (orientation: portrait) {
