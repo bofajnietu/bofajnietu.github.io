@@ -3355,7 +3355,7 @@
     --product-basic-item-price-font-line-height: var(--heading-font-line-height);
     --product-basic-item-price-font-font-size: var(--heading-4-size);
     --product-basic-item-price-font-font-size-value: var(--heading-4-size-value);
-    --primary-button-font-font-family: proxima-nova;
+    --primary-button-font-font-family: arial;
     --primary-button-font-font-style: normal;
     --primary-button-font-font-weight: 500;
     --primary-button-font-text-transform: none;
