@@ -998,44 +998,6 @@
       <main id="page" class="container" role="main">
 <article class="sections" id="sections" data-page-sections="6679e2179d8c9b3efb317038">
 
-  
-<section id="custom-gallery-container" class="custom-gallery">
-  <div id="custom-gallery-items" class="custom-gallery__items"></div>
-</section>
-<script>
-    // Custom Gallery Configuration
-    const customGalleryItems = [
-      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
-      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
-      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
-      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
-      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
-      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
-    ];
-
-    const customGalleryContainer = document.getElementById('custom-gallery-items');
-
-    customGalleryItems.forEach((item, index) => {
-      let element;
-      
-      if (item.type === 'image') {
-        element = document.createElement('img');
-        element.src = item.content;
-        element.className = 'custom-gallery__item custom-gallery__image';
-        element.alt = `Image ${index + 1}`;
-      } else {
-        element = document.createElement('div');
-        element.className = 'custom-gallery__item custom-gallery__text';
-        element.textContent = item.content;
-        element.style.height = item.height || 'auto'; // Use individual height
-      }
-      
-      customGalleryContainer.appendChild(element);
-    });
-  </script>
-
-
-  
   <section
   data-test="page-section"
   data-section-theme=""
@@ -1155,6 +1117,47 @@
     </div>
   </div>
 </section>
+
+  
+  
+<section id="custom-gallery-container" class="custom-gallery">
+  <div id="custom-gallery-items" class="custom-gallery__items"></div>
+</section>
+<script>
+    // Custom Gallery Configuration
+    const customGalleryItems = [
+      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
+      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
+      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
+      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
+      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
+      { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
+    ];
+
+    const customGalleryContainer = document.getElementById('custom-gallery-items');
+
+    customGalleryItems.forEach((item, index) => {
+      let element;
+      
+      if (item.type === 'image') {
+        element = document.createElement('img');
+        element.src = item.content;
+        element.className = 'custom-gallery__item custom-gallery__image';
+        element.alt = `Image ${index + 1}`;
+      } else {
+        element = document.createElement('div');
+        element.className = 'custom-gallery__item custom-gallery__text';
+        element.textContent = item.content;
+        element.style.height = item.height || 'auto'; // Use individual height
+      }
+      
+      customGalleryContainer.appendChild(element);
+    });
+  </script>
+
+
+  
+  
 <section
   data-test="page-section"
   data-section-theme=""
