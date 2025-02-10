@@ -18504,9 +18504,16 @@ img[data-src]:not([src]):not([srcset]) {
     padding-bottom: 3.3vmax
 }
 
-.page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.editmode-changing-rowcount).section-height--medium>.content-wrapper {
-    padding-top: 3vmax;
-    padding-bottom: 3vmax
+.page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.editmode-changing-rowcount).section-height--medium > .content-wrapper {
+    padding-top: 5vmax;
+    padding-bottom: 5vmax;
+}
+
+@media (max-width: 767px) {
+    .page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.editmode-changing-rowcount).section-height--medium > .content-wrapper {
+        padding-top: 2vmax;
+        padding-bottom: 2vmax;
+    }
 }
 
 .page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.editmode-changing-rowcount).section-height--large>.content-wrapper {
