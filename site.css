@@ -18488,7 +18488,7 @@ img[data-src]:not([src]):not([srcset]) {
 }
 
 .page-section.section-height--medium:not(.content-collection):not(.gallery-section):not(.user-items-list-section) {
-    min-height: 66vh
+    min-height: 0vh
 }
 
 .page-section.section-height--large:not(.content-collection):not(.gallery-section):not(.user-items-list-section) {
@@ -18505,8 +18505,8 @@ img[data-src]:not([src]):not([srcset]) {
 }
 
 .page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.editmode-changing-rowcount).section-height--medium>.content-wrapper {
-    padding-top: 6.6vmax;
-    padding-bottom: 6.6vmax
+    padding-top: 2vmax;
+    padding-bottom: 0vmax
 }
 
 .page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.editmode-changing-rowcount).section-height--large>.content-wrapper {
