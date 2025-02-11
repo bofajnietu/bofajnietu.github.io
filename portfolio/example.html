@@ -1077,8 +1077,8 @@
 <style>
   /* Custom Gallery Styles */
   :root {
-    --custom-gallery-spacing: 12px;  /* Vertical space between images */
-    --custom-gallery-padding: 16px;  /* Container padding */
+    --custom-gallery-spacing: 12px;
+    --custom-gallery-padding: 16px;
   }
 
   .custom-gallery {
@@ -1086,12 +1086,15 @@
   }
 
   .custom-gallery__items {
-    column-count: 1; /* Mobile: single column */
-    column-gap: 0; /* No gap between columns - we'll handle spacing with margins */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .custom-gallery__column {
+    width: 100%;
   }
 
   .custom-gallery__item {
-    break-inside: avoid; /* Prevent images from splitting between columns */
     margin-bottom: var(--custom-gallery-spacing);
   }
 
@@ -1102,49 +1105,91 @@
     border-radius: 8px;
   }
 
-  /* Desktop: two columns with staggered layout */
+  .custom-gallery__text {
+    background: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
   @media (min-width: 768px) {
     .custom-gallery__items {
-      column-count: 2; /* Two columns */
-      column-gap: var(--custom-gallery-spacing); /* Horizontal spacing */
+      flex-direction: row;
+      gap: var(--custom-gallery-spacing);
     }
-    
-    /* Optional: Add different animation delays for staggered effect */
-    .custom-gallery__item:nth-child(odd) {
-      animation-delay: 0.2s;
+
+    .custom-gallery__column {
+      width: calc(50% - calc(var(--custom-gallery-spacing) / 2);
     }
   }
 </style>
 
 <section id="custom-gallery-container" class="custom-gallery">
-  <div id="custom-gallery-items" class="custom-gallery__items"></div>
+  <div id="custom-gallery-items" class="custom-gallery__items">
+    <div class="custom-gallery__column" id="column-1"></div>
+    <div class="custom-gallery__column" id="column-2"></div>
+  </div>
 </section>
 
 <script>
-  // Custom Gallery Configuration
-  const customGalleryItems = [
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
+  const items = [
+    { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
+    { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
+    { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
+    { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
+    { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
+    { type: 'image', content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' },
+    { type: 'text', content: 'Example text box 1', height: '150px' },
+    { type: 'text', content: 'Example text box 2', height: '200px' }
   ];
 
-  const container = document.getElementById('custom-gallery-items');
+  // Split items into two columns
+  const column1 = document.getElementById('column-1');
+  const column2 = document.getElementById('column-2');
 
-  customGalleryItems.forEach((item, index) => {
+  items.forEach((item, index) => {
     const element = document.createElement('div');
     element.className = 'custom-gallery__item';
-    
-    const img = document.createElement('img');
-    img.src = item.content;
-    img.className = 'custom-gallery__image';
-    img.alt = `Project ${index + 1}`;
-    
-    element.appendChild(img);
-    container.appendChild(element);
+
+    if (item.type === 'image') {
+      const img = document.createElement('img');
+      img.src = item.content;
+      img.className = 'custom-gallery__image';
+      img.alt = `Project ${index + 1}`;
+      element.appendChild(img);
+    } else {
+      const textBox = document.createElement('div');
+      textBox.className = 'custom-gallery__text';
+      textBox.textContent = item.content;
+      textBox.style.height = item.height || 'auto';
+      element.appendChild(textBox);
+    }
+
+    // Distribute items to columns
+    if (index % 2 === 0) {
+      column1.appendChild(element);
+    } else {
+      column2.appendChild(element);
+    }
   });
+
+  // Mobile: Combine columns into single list
+  function handleResize() {
+    const itemsContainer = document.getElementById('custom-gallery-items');
+    if (window.innerWidth < 768) {
+      itemsContainer.prepend(...[...column1.children, ...column2.children]);
+    } else {
+      itemsContainer.append(column1, column2);
+      column1.append(...items.filter((_, i) => i % 2 === 0).map((_, i) => column1.children[i]));
+      column2.append(...items.filter((_, i) => i % 2 !== 0).map((_, i) => column2.children[i]));
+    }
+  }
+
+  // Initial load
+  handleResize();
+  window.addEventListener('resize', handleResize);
 </script>
 
 </article>
