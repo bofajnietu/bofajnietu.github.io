@@ -1072,8 +1072,6 @@
   </div>
 </section>
 
-  
-  
 <style>
   /* Custom Gallery Styles */
   :root {
@@ -1093,6 +1091,11 @@
 
   .custom-gallery__item {
     width: 100%;
+    margin-bottom: var(--custom-gallery-spacing);
+  }
+
+  .custom-gallery__item:last-child {
+    margin-bottom: 0; /* Remove margin for the last item */
   }
 
   .custom-gallery__image {
@@ -1115,10 +1118,18 @@
   @media (min-width: 768px) {
     .custom-gallery__items {
       flex-direction: row;
+      gap: var(--custom-gallery-spacing);
     }
 
     .custom-gallery__column {
       width: calc(50% - calc(var(--custom-gallery-spacing) / 2));
+      display: flex;
+      flex-direction: column;
+      gap: var(--custom-gallery-spacing);
+    }
+
+    .custom-gallery__item {
+      margin-bottom: 0; /* Reset margin for desktop */
     }
   }
 </style>
