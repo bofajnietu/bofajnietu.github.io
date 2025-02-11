@@ -1073,91 +1073,115 @@
 </section>
 
 <style>
-    /* Custom Gallery Styles */
-    :root {
-      --custom-gallery-spacing: 12px;  /* Space between items */
-      --custom-gallery-padding: 16px;  /* Container padding */
-    }
+  /* Custom Gallery Styles */
+  :root {
+    --custom-gallery-spacing: 12px;
+    --custom-gallery-padding: 16px;
+  }
 
-    .custom-gallery {
-      padding: var(--custom-gallery-padding);
-    }
+  .custom-gallery {
+    padding: var(--custom-gallery-padding);
+  }
 
+  .custom-gallery__items {
+    column-count: 1;
+    column-gap: var(--custom-gallery-spacing);
+  }
+
+  .custom-gallery__item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: var(--custom-gallery-spacing);
+    break-inside: avoid;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .custom-gallery__image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .custom-gallery__text {
+    padding: 20px;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 768px) {
     .custom-gallery__items {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--custom-gallery-spacing);
+      column-count: 2;
     }
+  }
 
-    /* Desktop layout */
-    @media (min-width: 768px) {
-      .custom-gallery__items {
-        grid-template-columns: repeat(2, 1fr);
-      }
+  @media (min-width: 1200px) {
+    .custom-gallery__items {
+      column-count: 3;
     }
-
-    .custom-gallery__item {
-      width: 100%;
-      display: block;
-      border-radius: 8px;
-    }
-
-    .custom-gallery__image {
-      height: auto; /* Maintain aspect ratio */
-    }
-
-    .custom-gallery__text {
-      background: #f5f5f5;
-      padding: 20px;
-      border: 1px solid #ddd;
-      overflow-y: auto;
-      box-sizing: border-box; /* Include padding in width calculation */
-    }
-  </style>
+  }
+</style>
 
 <!-- Gallery Section -->
 <section id="custom-gallery-container" class="custom-gallery">
   <div id="custom-gallery-items" class="custom-gallery__items"></div>
 </section>
 
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script>
-  // Custom Gallery Configuration
+  // Gallery Configuration
   const customGalleryItems = [
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
-    { content: 'First text box', height: '150px' }, // Text with specified height
+    { content: 'Modern living room design with natural lighting' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
-    { content: 'Second text box' }, // Text with no height specified
+    { content: 'Spa-inspired bathroom with marble finishes' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
-    { content: 'Third text box', height: '180px' }, // Text with specified height
+    { content: 'Home office design with ergonomic furniture' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
+    { content: 'Bedroom concept featuring minimalist decor' }
   ];
 
-  const customGalleryContainer = document.getElementById('custom-gallery-items');
-
+  // Create gallery elements
+  const container = document.getElementById('custom-gallery-items');
+  
   customGalleryItems.forEach((item, index) => {
-    let element;
+    const element = document.createElement('div');
+    element.className = 'custom-gallery__item';
 
-    // Check if the content is an image (ends with .jpg or .png)
-    if (item.content.endsWith('.jpg') || item.content.endsWith('.png')) {
-      element = document.createElement('img');
-      element.src = item.content;
-      element.className = 'custom-gallery__item custom-gallery__image';
-      element.alt = `Image ${index + 1}`;
+    if (item.content.match(/\.(jpg|png)$/i)) {
+      const img = document.createElement('img');
+      img.src = item.content;
+      img.className = 'custom-gallery__image';
+      img.alt = `Project ${index + 1}`;
+      element.appendChild(img);
     } else {
-      // Otherwise, it's a text item
-      element = document.createElement('div');
-      element.className = 'custom-gallery__item custom-gallery__text';
+      element.className += ' custom-gallery__text';
       element.textContent = item.content;
-
-      // Set height only if specified, otherwise let it default to the content height
-      if (item.height) {
-        element.style.height = item.height;
-      }
     }
 
-    customGalleryContainer.appendChild(element);
+    container.appendChild(element);
+  });
+
+  // Initialize Masonry with shuffle effect
+  window.addEventListener('load', () => {
+    const masonry = new Masonry(container, {
+      itemSelector: '.custom-gallery__item',
+      columnWidth: '.custom-gallery__item',
+      percentPosition: true,
+      transitionDuration: '0.3s',
+      stagger: 30,
+      resize: true
+    });
+
+    // Refresh layout on window resize
+    window.addEventListener('resize', () => {
+      masonry.layout();
+    });
   });
 </script>
 
