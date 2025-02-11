@@ -1101,15 +1101,7 @@
     display: block;
     border-radius: 8px;
   }
-  
-    .custom-gallery__text {
-      background: #f5f5f5;
-      padding: 20px;
-      border: 1px solid #ddd;
-      overflow-y: auto;
-      box-sizing: border-box; /* Include padding in width calculation */
-    }
-  
+
   /* Desktop: two columns with staggered layout */
   @media (min-width: 768px) {
     .custom-gallery__items {
@@ -1134,43 +1126,26 @@
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
-    { content: 'This is a text item' }
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
-    // You can also add text items like:
-    { content: 'This is a text item' }
   ];
 
   const container = document.getElementById('custom-gallery-items');
 
   customGalleryItems.forEach((item, index) => {
-    if (item.content.endsWith('.jpg') || item.content.endsWith('.png')) {
-      const element = document.createElement('div');
-      element.className = 'custom-gallery__item';
-      
-      const img = document.createElement('img');
-      img.src = item.content;
-      img.className = 'custom-gallery__image';
-      img.alt = `Project ${index + 1}`;
-      
-      element.appendChild(img);
-      container.appendChild(element);
-    } else {
-      // Added support for text elements:
-      const element = document.createElement('div');
-      element.className = 'custom-gallery__item';
-      
-      const textElement = document.createElement('div');
-      textElement.className = 'custom-gallery__text';
-      textElement.textContent = item.content;
-      
-      element.appendChild(textElement);
-      container.appendChild(element);
-    }
+    const element = document.createElement('div');
+    element.className = 'custom-gallery__item';
+    
+    const img = document.createElement('img');
+    img.src = item.content;
+    img.className = 'custom-gallery__image';
+    img.alt = `Project ${index + 1}`;
+    
+    element.appendChild(img);
+    container.appendChild(element);
   });
 </script>
-
 
 </article>
               <section
