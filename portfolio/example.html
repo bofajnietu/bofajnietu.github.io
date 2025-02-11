@@ -1101,7 +1101,15 @@
     display: block;
     border-radius: 8px;
   }
-
+  
+    .custom-gallery__text {
+      background: #f5f5f5;
+      padding: 20px;
+      border: 1px solid #ddd;
+      overflow-y: auto;
+      box-sizing: border-box; /* Include padding in width calculation */
+    }
+  
   /* Desktop: two columns with staggered layout */
   @media (min-width: 768px) {
     .custom-gallery__items {
@@ -1114,13 +1122,6 @@
       animation-delay: 0.2s;
     }
   }
-    .custom-gallery__text {
-      background: #f5f5f5;
-      padding: 20px;
-      border: 1px solid #ddd;
-      overflow-y: auto;
-      box-sizing: border-box; /* Include padding in width calculation */
-    }
 </style>
 
 <section id="custom-gallery-container" class="custom-gallery">
