@@ -1077,7 +1077,7 @@
 <style>
   /* Custom Gallery Styles */
   :root {
-    --custom-gallery-spacing: 12px;  /* Vertical space between images */
+    --custom-gallery-spacing: 12px;  /* Vertical space between items */
     --custom-gallery-padding: 16px;  /* Container padding */
   }
 
@@ -1087,11 +1087,11 @@
 
   .custom-gallery__items {
     column-count: 1; /* Mobile: single column */
-    column-gap: 0; /* No gap between columns - we'll handle spacing with margins */
+    column-gap: 0;
   }
 
   .custom-gallery__item {
-    break-inside: avoid; /* Prevent images from splitting between columns */
+    break-inside: avoid;
     margin-bottom: var(--custom-gallery-spacing);
   }
 
@@ -1102,16 +1102,20 @@
     border-radius: 8px;
   }
 
-  /* Desktop: two columns with staggered layout */
+  .custom-gallery__text {
+    background: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+
+  /* Desktop layout */
   @media (min-width: 768px) {
     .custom-gallery__items {
-      column-count: 2; /* Two columns */
-      column-gap: var(--custom-gallery-spacing); /* Horizontal spacing */
-    }
-    
-    /* Optional: Add different animation delays for staggered effect */
-    .custom-gallery__item:nth-child(odd) {
-      animation-delay: 0.2s;
+      column-count: 2;
+      column-gap: var(--custom-gallery-spacing);
     }
   }
 </style>
@@ -1123,27 +1127,56 @@
 <script>
   // Custom Gallery Configuration
   const customGalleryItems = [
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
+    { 
+      type: 'image', 
+      content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' 
+    },
+    { 
+      type: 'text', 
+      content: 'First text box description', 
+      height: '150px' 
+    },
+    { 
+      type: 'image', 
+      content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' 
+    },
+    { 
+      type: 'text', 
+      content: 'Second text box with different height', 
+      height: '200px' 
+    },
+    { 
+      type: 'image', 
+      content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' 
+    },
+    { 
+      type: 'text', 
+      content: 'Third text box content', 
+      height: '180px' 
+    }
   ];
 
   const container = document.getElementById('custom-gallery-items');
 
   customGalleryItems.forEach((item, index) => {
-    const element = document.createElement('div');
-    element.className = 'custom-gallery__item';
-    
-    const img = document.createElement('img');
-    img.src = item.content;
-    img.className = 'custom-gallery__image';
-    img.alt = `Project ${index + 1}`;
-    
-    element.appendChild(img);
-    container.appendChild(element);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'custom-gallery__item';
+
+    if (item.type === 'image') {
+      const img = document.createElement('img');
+      img.src = item.content;
+      img.className = 'custom-gallery__image';
+      img.alt = `Project ${index + 1}`;
+      wrapper.appendChild(img);
+    } else {
+      const textBox = document.createElement('div');
+      textBox.className = 'custom-gallery__text';
+      textBox.textContent = item.content;
+      textBox.style.height = item.height || 'auto';
+      wrapper.appendChild(textBox);
+    }
+
+    container.appendChild(wrapper);
   });
 </script>
 
