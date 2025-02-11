@@ -1088,14 +1088,11 @@
   .custom-gallery__items {
     display: flex;
     flex-direction: column;
-  }
-
-  .custom-gallery__column {
-    width: 100%;
+    gap: var(--custom-gallery-spacing);
   }
 
   .custom-gallery__item {
-    margin-bottom: var(--custom-gallery-spacing);
+    width: 100%;
   }
 
   .custom-gallery__image {
@@ -1114,22 +1111,21 @@
     overflow-y: auto;
   }
 
+  /* Desktop layout */
   @media (min-width: 768px) {
     .custom-gallery__items {
       flex-direction: row;
-      gap: var(--custom-gallery-spacing);
     }
 
     .custom-gallery__column {
-      width: calc(50% - calc(var(--custom-gallery-spacing) / 2);
+      width: calc(50% - calc(var(--custom-gallery-spacing) / 2));
     }
   }
 </style>
 
 <section id="custom-gallery-container" class="custom-gallery">
   <div id="custom-gallery-items" class="custom-gallery__items">
-    <div class="custom-gallery__column" id="column-1"></div>
-    <div class="custom-gallery__column" id="column-2"></div>
+    <!-- Columns will be dynamically inserted here -->
   </div>
 </section>
 
@@ -1145,11 +1141,9 @@
     { type: 'text', content: 'Example text box 2', height: '200px' }
   ];
 
-  // Split items into two columns
-  const column1 = document.getElementById('column-1');
-  const column2 = document.getElementById('column-2');
+  const container = document.getElementById('custom-gallery-items');
 
-  items.forEach((item, index) => {
+  function createItemElement(item, index) {
     const element = document.createElement('div');
     element.className = 'custom-gallery__item';
 
@@ -1167,31 +1161,60 @@
       element.appendChild(textBox);
     }
 
-    // Distribute items to columns
-    if (index % 2 === 0) {
-      column1.appendChild(element);
-    } else {
-      column2.appendChild(element);
-    }
-  });
+    return element;
+  }
 
-  // Mobile: Combine columns into single list
+  function renderMobileLayout() {
+    // Clear existing content
+    container.innerHTML = '';
+
+    // Append items in original order
+    items.forEach((item, index) => {
+      const element = createItemElement(item, index);
+      container.appendChild(element);
+    });
+  }
+
+  function renderDesktopLayout() {
+    // Clear existing content
+    container.innerHTML = '';
+
+    // Create two columns
+    const column1 = document.createElement('div');
+    column1.className = 'custom-gallery__column';
+
+    const column2 = document.createElement('div');
+    column2.className = 'custom-gallery__column';
+
+    // Distribute items into columns
+    items.forEach((item, index) => {
+      const element = createItemElement(item, index);
+      if (index % 2 === 0) {
+        column1.appendChild(element);
+      } else {
+        column2.appendChild(element);
+      }
+    });
+
+    // Append columns to container
+    container.appendChild(column1);
+    container.appendChild(column2);
+  }
+
   function handleResize() {
-    const itemsContainer = document.getElementById('custom-gallery-items');
     if (window.innerWidth < 768) {
-      itemsContainer.prepend(...[...column1.children, ...column2.children]);
+      renderMobileLayout();
     } else {
-      itemsContainer.append(column1, column2);
-      column1.append(...items.filter((_, i) => i % 2 === 0).map((_, i) => column1.children[i]));
-      column2.append(...items.filter((_, i) => i % 2 !== 0).map((_, i) => column2.children[i]));
+      renderDesktopLayout();
     }
   }
 
-  // Initial load
+  // Initial render
   handleResize();
   window.addEventListener('resize', handleResize);
 </script>
 
+  
 </article>
               <section
   id="itemPagination"
