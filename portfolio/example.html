@@ -1073,10 +1073,11 @@
 </section>
 
   
+  
 <style>
   /* Custom Gallery Styles */
   :root {
-    --custom-gallery-spacing: 12px;  /* Vertical space between items */
+    --custom-gallery-spacing: 12px;  /* Vertical space between images */
     --custom-gallery-padding: 16px;  /* Container padding */
   }
 
@@ -1086,11 +1087,11 @@
 
   .custom-gallery__items {
     column-count: 1; /* Mobile: single column */
-    column-gap: 0; /* No gap between columns – spacing is handled with margins */
+    column-gap: 0; /* No gap between columns - we'll handle spacing with margins */
   }
 
   .custom-gallery__item {
-    break-inside: avoid; /* Prevent elements from splitting between columns */
+    break-inside: avoid; /* Prevent images from splitting between columns */
     margin-bottom: var(--custom-gallery-spacing);
   }
 
@@ -1101,26 +1102,17 @@
     border-radius: 8px;
   }
 
-  /* Desktop: two columns (masonry/pinterest style) */
+  /* Desktop: two columns with staggered layout */
   @media (min-width: 768px) {
     .custom-gallery__items {
-      column-count: 2;
-      column-gap: var(--custom-gallery-spacing);
+      column-count: 2; /* Two columns */
+      column-gap: var(--custom-gallery-spacing); /* Horizontal spacing */
     }
     
-    /* Optional staggered animation delay */
+    /* Optional: Add different animation delays for staggered effect */
     .custom-gallery__item:nth-child(odd) {
       animation-delay: 0.2s;
     }
-  }
-
-  /* Added text item styling from implementation 1 */
-  .custom-gallery__text {
-    background: #f5f5f5;
-    padding: 20px;
-    border: 1px solid #ddd;
-    overflow-y: auto;
-    box-sizing: border-box; /* Include padding in width calculation */
   }
 </style>
 
@@ -1130,20 +1122,13 @@
 
 <script>
   // Custom Gallery Configuration
-  // This array uses six items arranged so that on mobile they appear in order:
-  // 1, 2, 3, 4, 5, 6
-  // and on desktop (with two columns) they appear as:
-  // 1   2
-  // 3   4
-  // 5   6
-  // Items without an explicit "type" are treated as images.
   const customGalleryItems = [
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
-    { type: 'text', content: 'First text box', height: '150px' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
-    { type: 'text', content: 'Second text box', height: '200px' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
-    { type: 'text', content: 'Third text box' }  // No height specified – will size to content
+    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
+    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
+    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
   ];
 
   const container = document.getElementById('custom-gallery-items');
@@ -1151,28 +1136,16 @@
   customGalleryItems.forEach((item, index) => {
     const element = document.createElement('div');
     element.className = 'custom-gallery__item';
-
-    if (item.type === 'text') {
-      element.classList.add('custom-gallery__text');
-      element.textContent = item.content;
-      // Only set a fixed height if one is provided; otherwise let it size naturally.
-      if (item.height) {
-        element.style.height = item.height;
-      }
-    } else {
-      // Default to image if no type is specified.
-      const img = document.createElement('img');
-      img.src = item.content;
-      img.className = 'custom-gallery__image';
-      img.alt = `Project ${index + 1}`;
-      element.appendChild(img);
-    }
-
+    
+    const img = document.createElement('img');
+    img.src = item.content;
+    img.className = 'custom-gallery__image';
+    img.alt = `Project ${index + 1}`;
+    
+    element.appendChild(img);
     container.appendChild(element);
   });
 </script>
-
-
 
 </article>
               <section
