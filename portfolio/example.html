@@ -1126,26 +1126,43 @@
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
+    { content: 'This is a text item' }
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
     { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
+    // You can also add text items like:
+    { content: 'This is a text item' }
   ];
 
   const container = document.getElementById('custom-gallery-items');
 
   customGalleryItems.forEach((item, index) => {
-    const element = document.createElement('div');
-    element.className = 'custom-gallery__item';
-    
-    const img = document.createElement('img');
-    img.src = item.content;
-    img.className = 'custom-gallery__image';
-    img.alt = `Project ${index + 1}`;
-    
-    element.appendChild(img);
-    container.appendChild(element);
+    if (item.content.endsWith('.jpg') || item.content.endsWith('.png')) {
+      const element = document.createElement('div');
+      element.className = 'custom-gallery__item';
+      
+      const img = document.createElement('img');
+      img.src = item.content;
+      img.className = 'custom-gallery__image';
+      img.alt = `Project ${index + 1}`;
+      
+      element.appendChild(img);
+      container.appendChild(element);
+    } else {
+      // Added support for text elements:
+      const element = document.createElement('div');
+      element.className = 'custom-gallery__item';
+      
+      const textElement = document.createElement('div');
+      textElement.className = 'custom-gallery__text';
+      textElement.textContent = item.content;
+      
+      element.appendChild(textElement);
+      container.appendChild(element);
+    }
   });
 </script>
+
 
 </article>
               <section
