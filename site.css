@@ -26094,37 +26094,37 @@ body:not(.tweak-events-stacked-ical-gcal-links) .event-meta-addtocalendar-contai
 
 @media screen and (max-width: 767px ) and (orientation: portrait) {
     #siteWrapper .user-items-list-item-container.user-items-list-simple[data-title-font-unit="rem"] .list-item-content__title {
-        font-size:calc((var(--title-font-size-value) - 1) * calc(.1 * min(100vh, 900px)) + 1rem)
+        font-size: xxx-large
     }
 }
 
 @media screen and (min-width: 768px ),screen and (max-width:calc(2120px - 1px)) and (orientation:landscape) {
     #siteWrapper .user-items-list-item-container.user-items-list-simple[data-title-font-unit="rem"] .list-item-content__title {
-        font-size:calc((var(--title-font-size-value) - 1) * 5.2vw + 1rem)
+        font-size: xxx-large
     }
 }
 
 @media screen and (min-width: 2120px) {
     #siteWrapper .user-items-list-item-container.user-items-list-simple[data-title-font-unit="rem"] .list-item-content__title {
-        font-size:calc(var(--title-font-size-value) * 1rem)
+        font-size: xxx-large
     }
 }
 
 @media screen and (max-width: 767px ) and (orientation: portrait) {
     #siteWrapper .user-items-list-item-container.user-items-list-simple[data-description-font-unit="rem"] .list-item-content__description {
-        font-size:calc((var(--body-font-size-value) - 1) * calc(0 * min(100vh, 900px)) + 1rem)
+        font-size: large
     }
 }
 
 @media screen and (min-width: 768px ),screen and (max-width:calc(2120px - 1px)) and (orientation:landscape) {
     #siteWrapper .user-items-list-item-container.user-items-list-simple[data-description-font-unit="rem"] .list-item-content__description {
-        font-size:calc((var(--body-font-size-value) - 1) * 0.2vw + 1rem)
+        font-size: large
     }
 }
 
 @media screen and (min-width: 2120px) {
     #siteWrapper .user-items-list-item-container.user-items-list-simple[data-description-font-unit="rem"] .list-item-content__description {
-        font-size:calc(var(--body-font-size-value) * 1rem)
+        font-size: large
     }
 }
 
