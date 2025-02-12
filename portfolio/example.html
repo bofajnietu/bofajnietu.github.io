@@ -1142,12 +1142,12 @@
 
 <script>
   const items = [
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_salon.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_lazienka.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_gabinet.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_p5.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_t4.jpg' },
-    { content: 'https://pracowniabofajnietu.pl/portfolio/images/bluszczanska_sypialnia.jpg' }
+    { content: 'bluszczanska_salon.jpg' },
+    { content: 'bluszczanska_lazienka.jpg' },
+    { content: 'bluszczanska_gabinet.jpg' },
+    { content: 'bluszczanska_p5.jpg' },
+    { content: 'bluszczanska_t4.jpg' },
+    { content: 'bluszczanska_sypialnia.jpg' }
   ];
 
   const container = document.getElementById('custom-gallery-items');
@@ -1162,7 +1162,7 @@
 
     if (isImage(item.content)) {
       const img = document.createElement('img');
-      img.src = item.content;
+      img.src = "/images/" + item.content;
       img.className = 'custom-gallery__image';
       img.alt = `Project ${index + 1}`;
       element.appendChild(img);
