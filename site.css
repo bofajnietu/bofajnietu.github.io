@@ -12939,7 +12939,7 @@ h2 {
 
 @media screen and (min-width: 2120px) {
     h2 {
-        font-size:calc(var(--heading-2-size-value) * 1rem)
+        font-size:calc(var(--heading-2-size-value) * 1.5rem)
     }
 }
 
