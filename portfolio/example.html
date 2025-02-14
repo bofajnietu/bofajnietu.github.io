@@ -1267,36 +1267,48 @@ TYTUŁ
   </div>
 </a>
     <script>
-      
-      document.addEventListener('DOMContentLoaded', function() {
-  const currentPage = window.location.pathname.split('/').pop();
+ document.addEventListener('DOMContentLoaded', function() {
+  // Get the current page and remove .html if present
+  let currentPage = window.location.pathname.split('/').pop().replace(/\.html$/, '');
   const prevBtn = document.querySelector('.item-pagination-link--prev');
   const nextBtn = document.querySelector('.item-pagination-link--next');
 
   fetch('/portfolio/order.txt')
     .then(response => response.text())
     .then(data => {
+      // Create a list of pages without the .html extension
       const pages = data.split('\n')
         .map(line => line.trim())
-        .filter(line => line);
+        .filter(line => line)
+        .map(page => page.replace(/\.html$/, ''));
 
       const currentIndex = pages.indexOf(currentPage);
 
-      // Set up Previous Button
+      // If current page is not found, disable both buttons
+      if (currentIndex === -1) {
+        console.error("Current page not found in order.txt");
+        prevBtn.classList.add('disabled');
+        prevBtn.removeAttribute('href');
+        nextBtn.classList.add('disabled');
+        nextBtn.removeAttribute('href');
+        return;
+      }
+
+      // Setup Previous Button
       if (currentIndex <= 0) {
         prevBtn.classList.add('disabled');
         prevBtn.removeAttribute('href');
         const prevTitle = prevBtn.querySelector('.item-pagination-title');
-        if (prevTitle) prevTitle.textContent = ''; // or set to a placeholder like '—'
+        if (prevTitle) prevTitle.textContent = '';
       } else {
         const prevPage = pages[currentIndex - 1];
         prevBtn.href = `/portfolio/${prevPage}`;
         const prevTitle = prevBtn.querySelector('.item-pagination-title');
-        if (prevTitle) prevTitle.textContent = prevPage.replace('.html', '');
+        if (prevTitle) prevTitle.textContent = prevPage;
       }
 
-      // Set up Next Button
-      if (currentIndex === -1 || currentIndex >= pages.length - 1) {
+      // Setup Next Button
+      if (currentIndex >= pages.length - 1) {
         nextBtn.classList.add('disabled');
         nextBtn.removeAttribute('href');
         const nextTitle = nextBtn.querySelector('.item-pagination-title');
@@ -1305,7 +1317,7 @@ TYTUŁ
         const nextPage = pages[currentIndex + 1];
         nextBtn.href = `/portfolio/${nextPage}`;
         const nextTitle = nextBtn.querySelector('.item-pagination-title');
-        if (nextTitle) nextTitle.textContent = nextPage.replace('.html', '');
+        if (nextTitle) nextTitle.textContent = nextPage;
       }
     })
     .catch(error => {
@@ -1314,6 +1326,7 @@ TYTUŁ
       nextBtn.classList.add('disabled');
     });
 });
+
 
     </script>
 </section>
