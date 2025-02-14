@@ -1133,7 +1133,7 @@
     </div>
     </div>
     <div class="portfolio-hover-items" data-test="portfolio-hover-items">
-      <ul class="portfolio-hover-items-list">
+      <ul id="portfolioList" class="portfolio-hover-items-list">
         <li>
           <a class="portfolio-hover-item" href="/portfolio/1">
             <h1 class="portfolio-hover-item-title"><span class="portfolio-hover-item-content">1</span></h1>
@@ -1160,6 +1160,36 @@
           </a>
         </li>
       </ul>
+      <!-- SKRYPT-->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop().replace(/\.html$/, '');
+  const portfolioList = document.getElementById('portfolioList');
+  
+  fetch('/portfolio/order.txt?cacheBust=' + Date.now())
+    .then(response => response.text())
+    .then(data => {
+      const pages = data.split('\n')
+        .map(line => line.trim())
+        .filter(line => line)
+        .map(page => page.replace(/\.html$/, ''));
+      
+      portfolioList.innerHTML = pages.map((page, index) => {
+        const isActive = page === currentPage;
+        return `
+          <li>
+            <a class="portfolio-hover-item" href="/portfolio/${page}" ${isActive ? 'data-active="true"' : ''}>
+              <h1 class="portfolio-hover-item-title">
+                <span class="portfolio-hover-item-content">${index + 1}</span>
+              </h1>
+            </a>
+          </li>
+        `;
+      }).join('');
+    })
+    .catch(error => console.error('Error loading portfolio list:', error));
+});
+</script>
     </div>
   </div>
   </div>
