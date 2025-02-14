@@ -1290,8 +1290,13 @@ TYTUŁ
         console.error("Current page not found in order.txt");
         prevBtn.classList.add('disabled');
         prevBtn.removeAttribute('href');
+        const prevIcon = prevBtn.querySelector('.item-pagination-icon');
+        if (prevIcon) prevIcon.remove();
+
         nextBtn.classList.add('disabled');
         nextBtn.removeAttribute('href');
+        const nextIcon = nextBtn.querySelector('.item-pagination-icon');
+        if (nextIcon) nextIcon.remove();
         return;
       }
 
@@ -1299,30 +1304,46 @@ TYTUŁ
       if (currentIndex <= 0) {
         prevBtn.classList.add('disabled');
         prevBtn.removeAttribute('href');
-        prevBtn.querySelector('.item-pagination-title').textContent = '';
+        const prevIcon = prevBtn.querySelector('.item-pagination-icon');
+        if (prevIcon) prevIcon.remove();
+        const prevTitle = prevBtn.querySelector('.item-pagination-title');
+        if (prevTitle) prevTitle.textContent = '';
       } else {
         const prevPage = pages[currentIndex - 1];
         prevBtn.href = `/portfolio/${prevPage}`;
-        prevBtn.querySelector('.item-pagination-title').textContent = currentIndex; // Display index (1-based)
+        const prevTitle = prevBtn.querySelector('.item-pagination-title');
+        if (prevTitle) prevTitle.textContent = currentIndex; // previous button shows index (1-based)
       }
 
       // Setup Next Button
       if (currentIndex >= pages.length - 1) {
         nextBtn.classList.add('disabled');
         nextBtn.removeAttribute('href');
-        nextBtn.querySelector('.item-pagination-title').textContent = '';
+        const nextIcon = nextBtn.querySelector('.item-pagination-icon');
+        if (nextIcon) nextIcon.remove();
+        const nextTitle = nextBtn.querySelector('.item-pagination-title');
+        if (nextTitle) nextTitle.textContent = '';
       } else {
         const nextPage = pages[currentIndex + 1];
         nextBtn.href = `/portfolio/${nextPage}`;
-        nextBtn.querySelector('.item-pagination-title').textContent = currentIndex + 2; // Display index (1-based)
+        const nextTitle = nextBtn.querySelector('.item-pagination-title');
+        if (nextTitle) nextTitle.textContent = currentIndex + 2; // next button shows index (1-based)
       }
     })
     .catch(error => {
       console.error('Error loading navigation:', error);
       prevBtn.classList.add('disabled');
+      prevBtn.removeAttribute('href');
+      const prevIcon = prevBtn.querySelector('.item-pagination-icon');
+      if (prevIcon) prevIcon.remove();
+
       nextBtn.classList.add('disabled');
+      nextBtn.removeAttribute('href');
+      const nextIcon = nextBtn.querySelector('.item-pagination-icon');
+      if (nextIcon) nextIcon.remove();
     });
 });
+
 
     </script>
 </section>
