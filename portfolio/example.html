@@ -1265,7 +1265,8 @@ TYTUŁ
       <polyline fill="none" stroke-miterlimit="10" points="1.6,1.2 6.5,7.9 1.6,14.7"></polyline>
     </svg>
   </div>
-</a>
+</a>        
+      <!-- SKRYPT -->
     <script>
  document.addEventListener('DOMContentLoaded', function() {
   // Get the current page and remove .html if present
@@ -1298,26 +1299,22 @@ TYTUŁ
       if (currentIndex <= 0) {
         prevBtn.classList.add('disabled');
         prevBtn.removeAttribute('href');
-        const prevTitle = prevBtn.querySelector('.item-pagination-title');
-        if (prevTitle) prevTitle.textContent = '';
+        prevBtn.querySelector('.item-pagination-title').textContent = '';
       } else {
         const prevPage = pages[currentIndex - 1];
         prevBtn.href = `/portfolio/${prevPage}`;
-        const prevTitle = prevBtn.querySelector('.item-pagination-title');
-        if (prevTitle) prevTitle.textContent = prevPage;
+        prevBtn.querySelector('.item-pagination-title').textContent = currentIndex; // Display index (1-based)
       }
 
       // Setup Next Button
       if (currentIndex >= pages.length - 1) {
         nextBtn.classList.add('disabled');
         nextBtn.removeAttribute('href');
-        const nextTitle = nextBtn.querySelector('.item-pagination-title');
-        if (nextTitle) nextTitle.textContent = '';
+        nextBtn.querySelector('.item-pagination-title').textContent = '';
       } else {
         const nextPage = pages[currentIndex + 1];
         nextBtn.href = `/portfolio/${nextPage}`;
-        const nextTitle = nextBtn.querySelector('.item-pagination-title');
-        if (nextTitle) nextTitle.textContent = nextPage;
+        nextBtn.querySelector('.item-pagination-title').textContent = currentIndex + 2; // Display index (1-based)
       }
     })
     .catch(error => {
@@ -1326,7 +1323,6 @@ TYTUŁ
       nextBtn.classList.add('disabled');
     });
 });
-
 
     </script>
 </section>
