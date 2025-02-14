@@ -1268,8 +1268,6 @@ TYTUŁ
 </a>        
       <!-- SKRYPT -->
     <script>
-fetch('/portfolio/order.txt?cacheBust=' + Date.now())
-  .then(response => response.text())
       
  document.addEventListener('DOMContentLoaded', function() {
   // Get the current page and remove .html if present
@@ -1277,8 +1275,8 @@ fetch('/portfolio/order.txt?cacheBust=' + Date.now())
   const prevBtn = document.querySelector('.item-pagination-link--prev');
   const nextBtn = document.querySelector('.item-pagination-link--next');
 
-  fetch('/portfolio/order.txt')
-    .then(response => response.text())
+  fetch('/portfolio/order.txt?cacheBust=' + Date.now())
+  .then(response => response.text())
     .then(data => {
       // Create a list of pages without the .html extension
       const pages = data.split('\n')
