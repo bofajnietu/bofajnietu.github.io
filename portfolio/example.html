@@ -1265,6 +1265,56 @@ TYTUŁ
         </svg>
       </div>
     </a>
+    <script>
+      
+      document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop();
+  const prevBtn = document.querySelector('.item-pagination-link--prev');
+  const nextBtn = document.querySelector('.item-pagination-link--next');
+
+  fetch('/portfolio/order.txt')
+    .then(response => response.text())
+    .then(data => {
+      const pages = data.split('\n')
+        .map(line => line.trim())
+        .filter(line => line);
+
+      const currentIndex = pages.indexOf(currentPage);
+
+      // Set up Previous Button
+      if (currentIndex <= 0) {
+        prevBtn.classList.add('disabled');
+        prevBtn.removeAttribute('href');
+        const prevTitle = prevBtn.querySelector('.item-pagination-title');
+        if (prevTitle) prevTitle.textContent = ''; // or set to a placeholder like '—'
+      } else {
+        const prevPage = pages[currentIndex - 1];
+        prevBtn.href = `/portfolio/${prevPage}`;
+        const prevTitle = prevBtn.querySelector('.item-pagination-title');
+        if (prevTitle) prevTitle.textContent = prevPage.replace('.html', '');
+      }
+
+      // Set up Next Button
+      if (currentIndex === -1 || currentIndex >= pages.length - 1) {
+        nextBtn.classList.add('disabled');
+        nextBtn.removeAttribute('href');
+        const nextTitle = nextBtn.querySelector('.item-pagination-title');
+        if (nextTitle) nextTitle.textContent = '';
+      } else {
+        const nextPage = pages[currentIndex + 1];
+        nextBtn.href = `/portfolio/${nextPage}`;
+        const nextTitle = nextBtn.querySelector('.item-pagination-title');
+        if (nextTitle) nextTitle.textContent = nextPage.replace('.html', '');
+      }
+    })
+    .catch(error => {
+      console.error('Error loading navigation:', error);
+      prevBtn.classList.add('disabled');
+      nextBtn.classList.add('disabled');
+    });
+});
+
+    </script>
 </section>
       </main>
       <script type="text/javascript">
