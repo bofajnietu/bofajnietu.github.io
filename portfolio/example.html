@@ -1222,12 +1222,13 @@ TYTUŁ
   }
 
   function handleResize() {
-    if (window.innerWidth < 768) {
-      renderMobileLayout();
-    } else {
-      renderDesktopLayout();
-    }
+  if (window.innerWidth < 768 || items.length < 4) {
+    renderMobileLayout();
+  } else {
+    renderDesktopLayout();
   }
+}
+
 
   // Initial render
   handleResize();
