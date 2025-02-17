@@ -1176,9 +1176,9 @@ function isVideo(url) {
 }
 
 // Assuming your existing portfolio array is called "portfolioItems"
-if (portfolioItems.length && isVideo(portfolioItems[0])) {
+if (items.length && isVideo(items[0])) {
   // Remove the video link from the portfolio list.
-  const videoUrl = portfolioItems.shift();
+  const videoUrl = items.shift();
 
   // Create the video container element.
   const videoContainer = document.createElement('div');
