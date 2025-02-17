@@ -1133,6 +1133,21 @@ TYTUŁ
       margin-bottom: 0;
     }
   }
+  /* Video player styling */
+.rounded-video {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 15px;  /* Rounded corners */
+  display: block;
+  margin: 20px auto;    /* Default (mobile) margin */
+}
+
+/* Desktop-specific margin adjustments */
+@media (min-width: 768px) {
+  .rounded-video {
+    margin: 40px auto;
+  }
+}
 </style>
 
 <section id="custom-gallery-container" class="custom-gallery">
@@ -1144,6 +1159,7 @@ TYTUŁ
 <!-- SKRYPT -->
 <script> 
   const items = [
+    { content: 'test_film.mp4' },
     { content: 'bluszczanska_salon.jpg' },
     { content: 'bluszczanska_lazienka.jpg' },
     { content: 'bluszczanska_gabinet.jpg' },
@@ -1154,6 +1170,38 @@ TYTUŁ
 
   const container = document.getElementById('custom-gallery-items');
 
+  // Helper function to check if a URL is a video link.
+function isVideo(url) {
+  return /\.(mp4|mov|avi|webm)$/i.test(url);
+}
+
+// Assuming your existing portfolio array is called "portfolioItems"
+if (portfolioItems.length && isVideo(portfolioItems[0])) {
+  // Remove the video link from the portfolio list.
+  const videoUrl = portfolioItems.shift();
+
+  // Create the video container element.
+  const videoContainer = document.createElement('div');
+  videoContainer.classList.add('portfolio-video');
+
+  // Insert the video element. (Add a poster attribute if desired.)
+  videoContainer.innerHTML = `
+    <video controls class="rounded-video">
+      <source src="${videoUrl}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  `;
+
+  // Prepend the video container so it appears before the other items.
+  // (Change '.portfolio-display' to your actual container selector.)
+  const displayContainer = document.querySelector('.portfolio-display');
+  if (displayContainer) {
+    displayContainer.prepend(videoContainer);
+  }
+}
+  
+
+  
   function isImage(content) {
     return content.includes('.jpg') || content.includes('.png');
   }
