@@ -1175,7 +1175,6 @@ function isVideo(url) {
   return /\.(mp4|mov|avi|webm)$/i.test(url);
 }
 
-// Assuming your existing portfolio array is called "portfolioItems"
 if (items.length && isVideo(items[0])) {
   // Remove the video link from the portfolio list.
   const videoUrl = items.shift();
