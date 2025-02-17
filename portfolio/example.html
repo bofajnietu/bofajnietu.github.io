@@ -1170,29 +1170,30 @@ TYTUŁ
 
   const container = document.getElementById('custom-gallery-items');
 
-  // Helper function to check if a URL is a video link.
+// Helper function to check if a URL is a video link.
 function isVideo(url) {
   return /\.(mp4|mov|avi|webm)$/i.test(url);
 }
 
-if (items.length && isVideo(items[0])) {
+// Assuming your existing portfolio array is "items"
+if (items.length && isVideo(items[0].content)) {
   // Remove the video link from the portfolio list.
-  const videoUrl = items.shift();
+  const videoItem = items.shift(); 
 
   // Create the video container element.
   const videoContainer = document.createElement('div');
   videoContainer.classList.add('portfolio-video');
 
-  // Insert the video element. (Add a poster attribute if desired.)
+  // Insert the video element.
   videoContainer.innerHTML = `
     <video controls class="rounded-video">
-      <source src="${videoUrl}" type="video/mp4">
+      <source src="${videoItem.content}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   `;
 
   // Prepend the video container so it appears before the other items.
-  // (Change '.portfolio-display' to your actual container selector.)
+  // Change '.portfolio-display' to match your actual container selector.
   const displayContainer = document.querySelector('.portfolio-display');
   if (displayContainer) {
     displayContainer.prepend(videoContainer);
