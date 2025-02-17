@@ -1187,7 +1187,7 @@ if (items.length && isVideo(items[0].content)) {
   // Insert the video element.
   videoContainer.innerHTML = `
     <video controls class="rounded-video">
-      <source src="${videoItem.content}" type="video/mp4">
+      <source src="/portfolio/images/${videoItem.content}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   `;
