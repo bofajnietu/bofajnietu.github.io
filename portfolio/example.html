@@ -1146,7 +1146,17 @@ TYTUŁ
   display: block;
   margin: 20px auto;    /* Default (mobile) margin */
 }
-
+.video-container{
+  position: absolute;
+  top: 0; /* Places it at the top */
+  left: 50%; /* Moves it to the center */
+  transform: translateX(-50%); /* Centers it horizontally */
+  z-index: 10; /* Ensures it appears above other elements */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
 /* Desktop-specific margin adjustments */
 @media (min-width: 768px) {
   .rounded-video {
@@ -1187,7 +1197,7 @@ if (items.length && isVideo(items[0].content)) {
   const videoItem = items.shift(); 
 
 const videoContainer = document.createElement('div');
-
+videoContainer.className = 'video-container';
   // Insert the video element.
   videoContainer.innerHTML = `
     <video controls class="rounded-video">
