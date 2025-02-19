@@ -1082,13 +1082,15 @@ TYTUŁ
 
   .custom-gallery {
     padding: var(--custom-gallery-padding);
-  }
-
-  .custom-gallery__items {
+    
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative; /* Needed if using z-index */
+  }
+
+  .custom-gallery__items {
+    display: flex;
     flex-direction: column;
     gap: var(--custom-gallery-spacing);
   }
@@ -1171,6 +1173,7 @@ TYTUŁ
     { content: 'bluszczanska_sypialnia.jpg' }
   ];
 
+  const container_parent = document.getElementById('custom-gallery-container');
   const container = document.getElementById('custom-gallery-items');
 
 // Helper function to check if a URL is a video link.
@@ -1193,16 +1196,13 @@ const videoContainer = document.createElement('div');
     </video>
   `;
 
-    container.innerHTML = '';
-    container.appendChild(videoContainer);
+    container_parent.prepend(videoContainer);
   // Prepend the video container so it appears before the other items.
   // Change '.portfolio-display' to match your actual container selector.
   const displayContainer = document.querySelector('.portfolio-display');
   if (displayContainer) {
     displayContainer.prepend(videoContainer);
   }
-}else{
-    container.innerHTML = '';
 }
   
   
@@ -1240,7 +1240,7 @@ const videoContainer = document.createElement('div');
 
   function renderMobileLayout() {
     // Clear existing content
-    //container.innerHTML = '';
+    container.innerHTML = '';
 
     // Append items in original order
     items.forEach((item, index) => {
@@ -1251,7 +1251,7 @@ const videoContainer = document.createElement('div');
 
   function renderDesktopLayout() {
     // Clear existing content
-    //container.innerHTML = '';
+    container.innerHTML = '';
 
     // Create two columns
     const column1 = document.createElement('div');
