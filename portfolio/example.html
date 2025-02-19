@@ -1147,14 +1147,15 @@ TYTUŁ
   display: block; /* Remove unwanted inline spacing */
 }
 .video-container{
-  width: 92vw; /* Full screen width */
+  width: 100vw; /* Full screen width */
   box-sizing: border-box; /* Ensures padding doesn’t add extra width */
+  padding: var(--custom-gallery-padding);
 }
   
 /* Desktop-specific margin adjustments */
 @media (min-width: 768px) {
   .video-container {
-    width: 65vw; /* Full screen width */
+    padding: 50px;
   }
 }
 </style>
