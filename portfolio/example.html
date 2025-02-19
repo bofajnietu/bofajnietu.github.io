@@ -1084,9 +1084,9 @@ TYTUŁ
     padding: var(--custom-gallery-padding);
     
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; /* Needed if using z-index */
+  flex-direction: column; /* Moves the first element to the top */
+  align-items: center; /* Centers the children horizontally */
+  gap: 10px; /* Adds spacing automatically */
   }
 
   .custom-gallery__items {
@@ -1147,11 +1147,6 @@ TYTUŁ
   margin: 20px auto;    /* Default (mobile) margin */
 }
 .video-container{
-  position: absolute;
-  top: 0; /* Places it at the top */
-  left: 50%; /* Moves it to the center */
-  transform: translateX(-50%); /* Centers it horizontally */
-  z-index: 10; /* Ensures it appears above other elements */
   display: flex;
   justify-content: center;
   align-items: center;
