@@ -1190,6 +1190,8 @@ const videoContainer = document.createElement('div');
     </video>
   `;
 
+    container.innerHTML = '';
+    container.appendChild(videoContainer);
   // Prepend the video container so it appears before the other items.
   // Change '.portfolio-display' to match your actual container selector.
   const displayContainer = document.querySelector('.portfolio-display');
@@ -1232,7 +1234,7 @@ const videoContainer = document.createElement('div');
 
   function renderMobileLayout() {
     // Clear existing content
-    container.innerHTML = '';
+    //container.innerHTML = '';
 
     // Append items in original order
     items.forEach((item, index) => {
@@ -1243,7 +1245,7 @@ const videoContainer = document.createElement('div');
 
   function renderDesktopLayout() {
     // Clear existing content
-    container.innerHTML = '';
+    //container.innerHTML = '';
 
     // Create two columns
     const column1 = document.createElement('div');
