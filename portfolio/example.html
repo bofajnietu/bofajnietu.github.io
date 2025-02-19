@@ -1085,7 +1085,10 @@ TYTUŁ
   }
 
   .custom-gallery__items {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* Needed if using z-index */
     flex-direction: column;
     gap: var(--custom-gallery-spacing);
   }
@@ -1198,7 +1201,10 @@ const videoContainer = document.createElement('div');
   if (displayContainer) {
     displayContainer.prepend(videoContainer);
   }
+}else{
+    container.innerHTML = '';
 }
+  
   
 
   
