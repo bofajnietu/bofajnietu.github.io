@@ -18506,7 +18506,7 @@ img[data-src]:not([src]):not([srcset]) {
 
 .page-section.vertical-alignment--middle:not(.content-collection):not(.gallery-section):not(.user-items-list-section):not(.editmode-changing-rowcount).section-height--medium > .content-wrapper {
     padding-top: 3vmax;
-    padding-bottom: 3vmax;
+    padding-bottom: 2vmax;
 }
 
 @media (max-width: 767px) {
