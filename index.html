@@ -1404,6 +1404,31 @@
       align-items: flex-start;
     }
   }
+
+  .circular-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Create the circular cutout */
+.circle-cutout {
+  width: 200px; /* Adjust the size of the circle */
+  height: 200px; /* Adjust the size of the circle */
+  border-radius: 50%; /* Makes the div circular */
+  overflow: hidden; /* Ensures the image is clipped to the circle */
+  position: relative;
+}
+/* Style the image to fill the circle */
+.circle-cutout img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover; /* Ensures the image covers the circle */
+}
+        
 </style><div class="fluid-engine fe-66795b35e8ae70143c4a5e64"><div class="fe-block fe-block-e55f73c850a320c8a206" style="font-family: 'Arial';">
   <h1 style="white-space:nowrap;">Poznajmy się</h1>
 </div><div class="fe-block fe-block-46603503d7993896da27 sqs-position-sticky"><div class="sqs-block image-block sqs-block-image sqs-stretched" data-aspect-ratio="59.068226981673654" data-block-type="5" id="block-46603503d7993896da27"><div class="sqs-block-content">
@@ -1426,9 +1451,13 @@
           class="fluid-image-container sqs-image-content"
           style="overflow: hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);border-top-left-radius: 400px;border-top-right-radius: 400px;border-bottom-left-radius: 400px;border-bottom-right-radius: 400px;position: relative;width: 100%;height: 100%;"
         >
-              <div class="content-fill">
-            <img data-stretch="true" data-src="/images/PaulaFotel.jpg" data-image="/images/PaulaFotel.jpg" data-image-dimensions="685x913" data-image-focal-point="0.7174631685319098,0.24002399653969309" alt="" data-load="false" elementtiming="system-image-block" src="/images/PaulaFotel.jpg" width="685" height="913" alt="" sizes="100vw" style="display:block;object-fit: cover; object-position: 71.74631685319099% 24.00239965396931%" srcset="/images/PaulaFotel.jpg?format=100w 100w, /images/PaulaFotel.jpg?format=300w 300w, /images/PaulaFotel.jpg?format=500w 500w, /images/PaulaFotel.jpg?format=750w 750w, /images/PaulaFotel.jpg?format=1000w 1000w, /images/PaulaFotel.jpg?format=1500w 1500w, /images/PaulaFotel.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
-            <div class="fluidImageOverlay"></div>
+              <div class="content-fill circular-parent">
+           <!-- <img data-stretch="true" data-src="/images/PaulaFotel.jpg" data-image="/images/PaulaFotel.jpg" data-image-dimensions="685x913" data-image-focal-point="0.7174631685319098,0.24002399653969309" alt="" data-load="false" elementtiming="system-image-block" src="/images/PaulaFotel.jpg" width="685" height="913" alt="" sizes="100vw" style="display:block;object-fit: cover; object-position: 71.74631685319099% 24.00239965396931%" srcset="/images/PaulaFotel.jpg?format=100w 100w, /images/PaulaFotel.jpg?format=300w 300w, /images/PaulaFotel.jpg?format=500w 500w, /images/PaulaFotel.jpg?format=750w 750w, /images/PaulaFotel.jpg?format=1000w 1000w, /images/PaulaFotel.jpg?format=1500w 1500w, /images/PaulaFotel.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
+            -->
+                <div class="circle-cutout">
+    <img src="/images/PaulaFotel.jpg" alt="Pracownia BoFajnieTu">
+  </div>
+             <div class="fluidImageOverlay"></div>
               </div>
         </div>
       </div>
