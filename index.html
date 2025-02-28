@@ -1412,10 +1412,12 @@
 }
 /* Create the circular cutout */
 .circle-cutout {
-  width: min(100vw, 100vh); /* Use the smaller of the two dimensions */
-  height: min(100vw, 100vh); /* Use the smaller of the two dimensions */
-  aspect-ratio: 1; /* Ensure circle stays 1:1 */
-  /* Circle styling */
+    /* Use the smaller of the parent's width/height to size the circle */
+  max-width: 100%;  /* Never exceed parent's width */
+  max-height: 100%; /* Never exceed parent's height */
+  width: auto;      /* Let the circle's size adapt */
+  height: auto;     /* Let the circle's size adapt */
+  aspect-ratio: 1;  /* Force 1:1 ratio (perfect circle) */
   overflow: hidden;
   position: relative;
 }
