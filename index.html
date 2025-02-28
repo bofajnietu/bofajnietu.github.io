@@ -1412,12 +1412,11 @@
 }
 /* Create the circular cutout */
 .circle-cutout {
-    /* Use the smaller of the parent's width/height to size the circle */
-  max-width: 100%;  /* Never exceed parent's width */
-  max-height: 100%; /* Never exceed parent's height */
-  width: auto;      /* Let the circle's size adapt */
-  height: auto;     /* Let the circle's size adapt */
-  aspect-ratio: 1;  /* Force 1:1 ratio (perfect circle) */
+/* Use the smaller of the parent's width/height */
+  width: min(100%, 100%); /* Takes the smaller of parent's width/height */
+  height: min(100%, 100%);
+  aspect-ratio: 1; /* Force a perfect square (becomes a circle via border-radius) */
+  /* Circle styling */
   overflow: hidden;
   position: relative;
 }
@@ -1425,7 +1424,7 @@
 .circle-cutout img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Prevents squishing, scales image to cover the circle */
+  object-fit: cover; /* Prevents squishing */
 }
         
 </style><div class="fluid-engine fe-66795b35e8ae70143c4a5e64"><div class="fe-block fe-block-e55f73c850a320c8a206" style="font-family: 'Arial';">
