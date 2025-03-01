@@ -1405,30 +1405,34 @@
     }
   }
         
-  .circular-parent {
-display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-/* Create the circular cutout */
-.circle-cutout {
-  --size: min(100%, 100%); /* Will be interpreted as min(parent-width, parent-height) */
-  width: var(--size);
-  height: var(--size);
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-/* Style the image to fill the circle */
-.circle-cutout img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
+/* Circular container (fills parent) */
+  .bft-circular-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  /* Centers the circular image */
+  .bft-image-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Creates the circular mask */
+  .bft-circle-mask {
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Ensures the image fits perfectly */
+  .bft-image {
+    display: block;
+    object-fit: cover;
+  }
         
 </style><div class="fluid-engine fe-66795b35e8ae70143c4a5e64"><div class="fe-block fe-block-e55f73c850a320c8a206" style="font-family: 'Arial';">
   <h1 style="white-space:nowrap;">Poznajmy się</h1>
@@ -1452,13 +1456,53 @@ display: flex;
           class="fluid-image-container sqs-image-content"
           style="overflow: hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);border-top-left-radius: 400px;border-top-right-radius: 400px;border-bottom-left-radius: 400px;border-bottom-right-radius: 400px;position: relative;width: 100%;height: 100%;"
         >
-              <div class="content-fill circular-parent">
+              <div class="content-fill bft-parent">
            <!-- <img data-stretch="true" data-src="/images/PaulaFotel.jpg" data-image="/images/PaulaFotel.jpg" data-image-dimensions="685x913" data-image-focal-point="0.7174631685319098,0.24002399653969309" alt="" data-load="false" elementtiming="system-image-block" src="/images/PaulaFotel.jpg" width="685" height="913" alt="" sizes="100vw" style="display:block;object-fit: cover; object-position: 71.74631685319099% 24.00239965396931%" srcset="/images/PaulaFotel.jpg?format=100w 100w, /images/PaulaFotel.jpg?format=300w 300w, /images/PaulaFotel.jpg?format=500w 500w, /images/PaulaFotel.jpg?format=750w 750w, /images/PaulaFotel.jpg?format=1000w 1000w, /images/PaulaFotel.jpg?format=1500w 1500w, /images/PaulaFotel.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
             -->
-                <div class="circle-cutout">
-    <img src="/images/PaulaFotel.jpg" alt="Pracownia BoFajnieTu">
+  <div class="bft-circular-container">
+    <div class="bft-image-wrapper">
+      <div class="bft-circle-mask">
+        <img src="https://pracowniabofajnietu.pl/images/PaulaFotel.jpg" 
+             class="bft-image" 
+             alt="Pracownia BoFajnieTu">
+      </div>
+    </div>
   </div>
-              </div>
+
+<script>
+  class BFTImageContainer {
+    constructor(containerEl) {
+      this.container = containerEl;
+      this.mask = containerEl.querySelector('.bft-circle-mask');
+      this.image = containerEl.querySelector('.bft-image');
+      
+      // Initialize the circle size
+      this.updateCircle();
+      
+      // Watch for parent size changes
+      this.observer = new ResizeObserver(() => this.updateCircle());
+      this.observer.observe(this.container);
+    }
+
+    // Updates the circle size to fit the container
+    updateCircle() {
+      const containerWidth = this.container.clientWidth;
+      const containerHeight = this.container.clientHeight;
+      const circleSize = Math.min(containerWidth, containerHeight);
+      
+      this.mask.style.width = `${circleSize}px`;
+      this.mask.style.height = `${circleSize}px`;
+      this.image.style.width = `${circleSize}px`;
+      this.image.style.height = `${circleSize}px`;
+    }
+  }
+
+  // Initialize the circular image container
+  const bftContainer = new BFTImageContainer(
+    document.querySelector('.bft-circular-container')
+  );
+</script>
+                
         </div>
       </div>
     </div>
