@@ -1471,10 +1471,11 @@
 
 <script>
   class BFTImageContainer {
-    constructor(containerEl) {
+    constructor(containerEl, padding = 10) {
       this.container = containerEl;
       this.mask = containerEl.querySelector('.bft-circle-mask');
       this.image = containerEl.querySelector('.bft-image');
+      this.padding = padding; // Padding from the parent edges
       
       // Initialize the circle size
       this.updateCircle();
@@ -1484,12 +1485,18 @@
       this.observer.observe(this.container);
     }
 
-    // Updates the circle size to fit the container
+    // Updates the circle size to fit the container (minus padding)
     updateCircle() {
       const containerWidth = this.container.clientWidth;
       const containerHeight = this.container.clientHeight;
-      const circleSize = Math.min(containerWidth, containerHeight);
       
+      // Subtract padding from both dimensions
+      const circleSize = Math.min(
+        containerWidth - this.padding * 2,
+        containerHeight - this.padding * 2
+      );
+      
+      // Apply the calculated size
       this.mask.style.width = `${circleSize}px`;
       this.mask.style.height = `${circleSize}px`;
       this.image.style.width = `${circleSize}px`;
@@ -1497,9 +1504,10 @@
     }
   }
 
-  // Initialize the circular image container
+  // Initialize the circular image container with padding
   const bftContainer = new BFTImageContainer(
-    document.querySelector('.bft-circular-container')
+    document.querySelector('.bft-circular-container'),
+    20 // Set your desired padding here (e.g., 20px)
   );
 </script>
                 
