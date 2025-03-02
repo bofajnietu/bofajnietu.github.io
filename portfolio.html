@@ -76,7 +76,7 @@
     id="header"
     class="
       header theme-col--primary
-    "
+                  "
     data-section-theme=""
     data-controller="Header"
     data-current-styles="{
@@ -1240,8 +1240,20 @@ portfolioItems.forEach((item, index) => {
     // Example: Add a click event listener to each item
     item.addEventListener('mouseenter', transitionToIndex(index));
 });
-  
-   
+
+   function setPadding() {
+    const element = document.querySelector('.content');
+    const screenWidth = window.innerWidth;
+
+    element.style.paddingTop = '30px';
+    element.style.paddingBottom = '30px';
+}
+
+// Set initial padding on page load
+setPadding();
+
+// Update padding on window resize
+window.addEventListener('resize', setPadding);
    
 });
 </script>
