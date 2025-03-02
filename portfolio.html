@@ -941,6 +941,10 @@
           </div>
         </nav>
       </div>
+
+<!-- BACKGROUNDS -->
+<div class="background-container"></div>
+      
     </div>
   </header>
       <main id="page" class="container" role="main">
@@ -1180,8 +1184,66 @@
       }).join('');
     })
     .catch(error => console.error('Error loading portfolio list:', error));
-});
 
+
+   //hover logic
+  const container = document.querySelector('.background-container');
+  let currentActive = 0;
+  let isTransitioning = false;
+
+
+
+          const images = [
+            'https://picsum.photos/1920/1080?random=1',
+            'https://picsum.photos/1920/1080?random=2',
+            'https://picsum.photos/1920/1080?random=3',
+            'https://picsum.photos/1920/1080?random=4'
+        ];
+
+        // Create image elements
+        images.forEach((src, index) => {
+            const img = document.createElement('img');
+            img.className = `background-image ${index === 0 ? 'active' : ''}`;
+            img.src = src;
+            img.alt = `Background ${index + 1}`;
+            container.appendChild(img);
+        });
+
+        const backgrounds = document.querySelectorAll('.background-image');
+
+        function transitionToIndex(newIndex) {
+            if (isTransitioning || newIndex === currentActive || newIndex < 0 || newIndex >= images.length) return;
+            
+            isTransitioning = true;
+            const prevActive = currentActive;
+            currentActive = newIndex;
+
+            backgrounds[prevActive].classList.remove('active');
+            backgrounds[currentActive].classList.add('active');
+
+            const onTransitionEnd = () => {
+                isTransitioning = false;
+                backgrounds[currentActive].removeEventListener('transitionend', onTransitionEnd);
+            };
+
+            backgrounds[currentActive].addEventListener('transitionend', onTransitionEnd);
+        }
+
+  
+  
+  const portfolioItems = document.querySelectorAll('.portfolio-hover-item');
+// Loop through each item in the order they appear
+portfolioItems.forEach((item, index) => {
+    // Do something with each item
+    console.log(`Item ${index + 1}:`, item);
+
+    // Example: Add a click event listener to each item
+    item.addEventListener('mouseenter', transitionToIndex(index));
+});
+  
+   
+   
+});
 </script>
     </div>
   </div>
