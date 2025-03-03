@@ -1057,63 +1057,82 @@
 <div class="background-container"></div>
       
 <style>
-/* Fix viewport units for mobile */
 .portfolio-parent {
   position: relative;
-  height: 100dvh; /* Dynamic viewport units */
+  height: 100dvh;
   width: 100dvw;
   overflow: hidden;
 }
 
-/* Stacking order fix */
-.portfolio-hover-items-list {
-  z-index: 2;
-  position: relative; /* Needs position for z-index */
+/* Center both elements */
+.portfolio-hover-items-list,
+.background-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
 }
 
+/* List styling */
+.portfolio-hover-items-list {
+  z-index: 2;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Allow clicks through to images */
+}
+
+/* Background images container */
 .background-container {
   z-index: 1;
 }
 
-/* Remove conflicting opacity JS control */
-.portfolio-hover-item-title {
-  opacity: 0.85;
-  transition: opacity 0.3s ease-in-out;
+/* Individual background images */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
-.portfolio-hover-item:hover .portfolio-hover-item-title,
-.portfolio-hover-item:focus .portfolio-hover-item-title {
+.background-image.active {
   opacity: 1;
 }
 </style>
 <!-- SKRYPT -->
 <script>
-  document.body.classList.add(
-    'ontouchstart' in window || navigator.msMaxTouchPoints 
-    ? 'touch' : 'no-touch'
-  );
-  
 document.addEventListener('DOMContentLoaded', function() {
-  // Keep these in outer scope
-  let currentActive = 0;
-  let isTransitioning = false;
+  // Clean existing elements first
   const container = document.querySelector('.background-container');
+  container.innerHTML = '';
   const images = [];
 
-  // Load portfolio items
   fetch(`/portfolio/order.txt?cache=${Date.now()}`)
-    .then(response => response.text())
+    .then(response => {
+      if (!response.ok) throw new Error('Network response was not ok');
+      return response.text();
+    })
     .then(data => {
-      const pages = data.split('\n').filter(Boolean).map(p => p.replace('.html', ''));
-      const currentPage = window.location.pathname.split('/').pop().replace(/\.html$/, '');
+      const pages = data.split('\n')
+        .filter(line => line.trim())
+        .map(p => p.replace('.html', ''));
 
       // Generate menu items
       const portfolioList = document.getElementById('portfolioList');
       portfolioList.innerHTML = pages.map((page, index) => `
-        <li>
+        <li style="pointer-events: auto;">
           <a class="portfolio-hover-item" 
-             href="/portfolio/${page}"
-             ${page === currentPage ? 'data-active="true"' : ''}>
+             href="/portfolio/${page}">
             <h1 class="portfolio-hover-item-title">
               <span>${index + 1}</span>
             </h1>
@@ -1121,55 +1140,53 @@ document.addEventListener('DOMContentLoaded', function() {
         </li>
       `).join('');
 
-      // Create background images
+      // Create and preload images
       pages.forEach((page, index) => {
-        const img = document.createElement('img');
+        const img = new Image();
         img.className = `background-image ${index === 0 ? 'active' : ''}`;
         img.src = `/portfolio/images/${page}.jpg`;
+        img.onerror = () => console.error('Failed to load image:', img.src);
         container.appendChild(img);
         images.push(img);
       });
 
-      // Add hover handlers
-document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  let isTouched = false;
-  
-  // Touch devices
-  item.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    isTouched = true;
-    transitionToIndex(index);
-  });
-
-  item.addEventListener('touchend', () => {
-    setTimeout(() => isTouched = false, 100);
-  });
-
-  // Desktop hover
-  item.addEventListener('mouseenter', () => {
-    if (!isTouched) transitionToIndex(index);
-  });
-});
+      // Interaction handlers
+      document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
+        let touchTimer;
+        
+        item.addEventListener('mouseenter', () => transitionToIndex(index));
+        
+        item.addEventListener('touchstart', (e) => {
+          e.preventDefault();
+          touchTimer = setTimeout(() => transitionToIndex(index), 100);
+        });
+        
+        item.addEventListener('touchend', () => clearTimeout(touchTimer));
+      });
+    })
+    .catch(error => {
+      console.error('Fetch error:', error);
+      portfolioList.innerHTML = '<li>Error loading content</li>';
+    });
 
   // Transition function
   function transitionToIndex(newIndex) {
-  if (isTransitioning || newIndex === currentActive) return;
-  isTransitioning = true;
+    if (isTransitioning || newIndex === currentActive || newIndex < 0 || newIndex >= images.length) return;
+    
+    isTransitioning = true;
+    const prevActive = currentActive;
+    currentActive = newIndex;
 
-  // Clean up previous listeners
-  images[currentActive].classList.remove('active');
-  
-  images[newIndex].classList.add('active');
-  
-  // Use proper transitionend handling
-  const handleTransitionEnd = () => {
-    isTransitioning = false;
-    images[newIndex].removeEventListener('transitionend', handleTransitionEnd);
-  };
-  
-  images[newIndex].addEventListener('transitionend', handleTransitionEnd);
-  currentActive = newIndex;
-}
+    images[prevActive].classList.remove('active');
+    images[currentActive].classList.add('active');
+
+    const handleTransitionEnd = () => {
+      isTransitioning = false;
+      images[currentActive].removeEventListener('transitionend', handleTransitionEnd);
+    };
+
+    images[currentActive].addEventListener('transitionend', handleTransitionEnd);
+  }
 
   // Padding calculation (with debounce)
   let resizeTimeout;
