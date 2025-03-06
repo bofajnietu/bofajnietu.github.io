@@ -1202,12 +1202,6 @@ function setPadding() {
   content.style.paddingTop = `${headerRect.height}px`;
   content.style.paddingBottom = `${footerRect.height}px`;
 }
-  
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(setPadding, 100);
-  });
-  setPadding();
 });
 </script>      
     </div>
