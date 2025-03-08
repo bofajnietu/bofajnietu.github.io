@@ -942,6 +942,9 @@
         </nav>
       </div>
 
+<!-- BACKGROUNDS -->
+<div class="background-container"></div>
+      
     </div>
   </header>
       <main id="page" class="container" role="main">
@@ -1056,151 +1059,207 @@
     '
   >
     <div
-      class="content portfolio-parent" id="content"
+      class="content"
     >
-
-<ul id="portfolioList" class="portfolio-hover-items-list"></ul>
-
-<!-- BACKGROUNDS -->
-<div class="background-container"></div>
-      
-<style>
-/* Fix viewport units for mobile */
-.portfolio-parent {
-  position: relative;
-  height: 100dvh; /* Dynamic viewport units */
-  width: 100dvw;
-  overflow: hidden;
-}
-
-/* Stacking order fix */
-.portfolio-hover-items-list {
-  z-index: 2;
-  position: relative; /* Needs position for z-index */
-}
-
-.background-container {
-  z-index: 1;
-}
-
-/* Remove conflicting opacity JS control */
-.portfolio-hover-item-title {
-  opacity: 0.85;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.portfolio-hover-item:hover .portfolio-hover-item-title,
-.portfolio-hover-item:focus .portfolio-hover-item-title {
-  opacity: 1;
-}
-</style>
-<!-- SKRYPT -->
-<script>
-  document.body.classList.add(
-    'ontouchstart' in window || navigator.msMaxTouchPoints 
-    ? 'touch' : 'no-touch'
-  );
-  
-document.addEventListener('DOMContentLoaded', function() {
-  // Keep these in outer scope
-  let currentActive = 0;
-  let isTransitioning = false;
-  const container = document.querySelector('.background-container');
-  const images = [];
-
-  // Load portfolio items
-  fetch(`/portfolio/order.txt?cache=${Date.now()}`)
-    .then(response => response.text())
-    .then(data => {
-      const pages = data.split('\n').filter(Boolean).map(p => p.replace('.html', ''));
-      const currentPage = window.location.pathname.split('/').pop().replace(/\.html$/, '');
-
-      // Generate menu items
-      const portfolioList = document.getElementById('portfolioList');
-      portfolioList.innerHTML = pages.map((page, index) => `
+      <div
+  class="portfolio-hover"
+  data-controller="PortfolioHover"
+  data-variant-hover-cover
+  data-props='{
+    "mode": "hover-cover",
+    "tweaks": {
+    "layout": "tweak-portfolio-index-background-link-format",
+    "persistSelection": "tweak-portfolio-index-background-persist",
+    "verticalAlign": "tweak-portfolio-index-background-vertical-alignment",
+    "horizontalAlign": "tweak-portfolio-index-background-horizontal-alignment",
+    "spacingHorizontal": "tweak-portfolio-index-background-text-spacing-x",
+    "spacingVertical": "tweak-portfolio-index-background-text-spacing-y",
+    "delimiter": "tweak-portfolio-index-background-delimiter",
+    "animation": "tweak-portfolio-index-background-animation-type",
+    "animationDuration": "tweak-portfolio-index-background-animation-duration",
+    "width": "tweak-portfolio-index-background-width",
+    "height": "tweak-portfolio-index-background-height",
+    "customHeight": "tweak-portfolio-index-background-custom-height"
+    }
+  }'
+  data-first-section-padding-override
+  data-animation-role="section"
+  >
+  <div class="portfolio-hover-display">
+    <div class="portfolio-hover-base">
+    <div class="portfolio-hover-base-sticky">
+      <div class="portfolio-hover-wrapper">
+      <div class="portfolio-hover-backgrounds">
+        <div class="portfolio-hover-backgrounds-wrapper">
+        <div class="portfolio-hover-bg">
+          <div class="portfolio-hover-bg-mask">
+            <div class="portfolio-hover-bg-img">
+                <div class="portfolio-hover-bg-overlay"></div>
+<img data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg" data-image-dimensions="2449x1378" data-image-focal-point="0.5,0.5" alt="1" data-load="false" elementtiming="nbf-portfolio-index-background" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg" width="2449" height="1378" alt="" sizes="0" style="display:block;display: none; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719772850707-KU2PWTIUVMCL3PVT8YE6/11.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-hover-bg">
+          <div class="portfolio-hover-bg-mask">
+            <div class="portfolio-hover-bg-img">
+                <div class="portfolio-hover-bg-overlay"></div>
+<img data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg" data-image-dimensions="640x480" data-image-focal-point="0.5,0.5" alt="2" data-load="false" elementtiming="nbf-portfolio-index-background" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg" width="640" height="480" alt="" sizes="0" style="display:block;display: none; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780461706-QD9IAO0KGW0T9TV48JAB/2.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-hover-bg">
+          <div class="portfolio-hover-bg-mask">
+            <div class="portfolio-hover-bg-img">
+                <div class="portfolio-hover-bg-overlay"></div>
+<img data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg" data-image-dimensions="674x773" data-image-focal-point="0.5,0.5" alt="3" data-load="false" elementtiming="nbf-portfolio-index-background" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg" width="674" height="773" alt="" sizes="0" style="display:block;display: none; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719780829247-KJ2OZCQ0G09XJFV80OK3/1.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-hover-bg">
+          <div class="portfolio-hover-bg-mask">
+            <div class="portfolio-hover-bg-img">
+                <div class="portfolio-hover-bg-overlay"></div>
+<img data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg" data-image-dimensions="1765x820" data-image-focal-point="0.5,0.5" alt="4" data-load="false" elementtiming="nbf-portfolio-index-background" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg" width="1765" height="820" alt="" sizes="0" style="display:block;display: none; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779063997-J12MGYERPM1NQZJUYD33/Zrzut+ekranu+2024-06-30+220336.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
+            </div>
+          </div>
+        </div>
+        <div class="portfolio-hover-bg">
+          <div class="portfolio-hover-bg-mask">
+            <div class="portfolio-hover-bg-img">
+                <div class="portfolio-hover-bg-overlay"></div>
+<img data-src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg" data-image="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg" data-image-dimensions="1355x764" data-image-focal-point="0.5,0.5" alt="5" data-load="false" elementtiming="nbf-portfolio-index-background" src="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg" width="1355" height="764" alt="" sizes="0" style="display:block;display: none; object-position: 50% 50%" srcset="https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg?format=100w 100w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg?format=300w 300w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg?format=500w 500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg?format=750w 750w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/66794c0184324035e9bb5b17/1719779783779-XS3DTB11YGOBZABLSY64/8.jpg?format=2500w 2500w" loading="lazy" decoding="async" data-loader="sqs">
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div class="portfolio-hover-items" data-test="portfolio-hover-items">
+      <ul id="portfolioList" class="portfolio-hover-items-list">
         <li>
-          <a class="portfolio-hover-item" 
-             href="/portfolio/${page}"
-             ${page === currentPage ? 'data-active="true"' : ''}>
-            <h1 class="portfolio-hover-item-title">
-              <span>${index + 1}</span>
-            </h1>
+          <a class="portfolio-hover-item" href="/portfolio/1">
+            <h1 class="portfolio-hover-item-title"><span class="portfolio-hover-item-content">1</span></h1>
           </a>
         </li>
-      `).join('');
-
-      // Create background images
-      pages.forEach((page, index) => {
-        const img = document.createElement('img');
-        img.className = `background-image ${index === 0 ? 'active' : ''}`;
-        img.src = `/portfolio/images/${page}.jpg`;
-        container.appendChild(img);
-        images.push(img);
-      });
-
-      // Add hover handlers
-document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  let isTouched = false;
+        <li>
+          <a class="portfolio-hover-item" href="/portfolio/2">
+            <h1 class="portfolio-hover-item-title"><span class="portfolio-hover-item-content">2</span></h1>
+          </a>
+        </li>
+        <li>
+          <a class="portfolio-hover-item" href="/portfolio/3">
+            <h1 class="portfolio-hover-item-title"><span class="portfolio-hover-item-content">3</span></h1>
+          </a>
+        </li>
+        <li>
+          <a class="portfolio-hover-item" href="/portfolio/4">
+            <h1 class="portfolio-hover-item-title"><span class="portfolio-hover-item-content">4</span></h1>
+          </a>
+        </li>
+        <li>
+          <a class="portfolio-hover-item" href="/portfolio/5">
+            <h1 class="portfolio-hover-item-title"><span class="portfolio-hover-item-content">5</span></h1>
+          </a>
+        </li>
+      </ul>
+      <!-- SKRYPT-->
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const currentPage = window.location.pathname.split('/').pop().replace(/\.html$/, '');
+  const portfolioList = document.getElementById('portfolioList');
   
-  // Touch devices
-  item.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    isTouched = true;
-    transitionToIndex(index);
-  });
+  fetch('/portfolio/order.txt?cacheBust=' + Date.now())
+    .then(response => response.text())
+    .then(data => {
+      const pages = data.split('\n')
+        .map(line => line.trim())
+        .filter(line => line)
+        .map(page => page.replace(/\.html$/, ''));
+      
+      portfolioList.innerHTML = pages.map((page, index) => {
+        const isActive = page === currentPage;
+        return `<li><a class="portfolio-hover-item" href="/portfolio/${page}" ${isActive ? 'data-active="true"' : ''}><h1 class="portfolio-hover-item-title"><span class="portfolio-hover-item-content">${index + 1}</span></h1></a></li>`;
+      }).join('');
+    })
+    .catch(error => console.error('Error loading portfolio list:', error));
 
-  item.addEventListener('touchend', () => {
-    setTimeout(() => isTouched = false, 100);
-  });
 
-  // Desktop hover
-  item.addEventListener('mouseenter', () => {
-    if (!isTouched) transitionToIndex(index);
-  });
+   //hover logic
+  const container = document.querySelector('.background-container');
+  let currentActive = 0;
+  let isTransitioning = false;
+
+
+
+          const images = [
+            'https://picsum.photos/1920/1080?random=1',
+            'https://picsum.photos/1920/1080?random=2',
+            'https://picsum.photos/1920/1080?random=3',
+            'https://picsum.photos/1920/1080?random=4'
+        ];
+
+        // Create image elements
+        images.forEach((src, index) => {
+            const img = document.createElement('img');
+            img.className = `background-image ${index === 0 ? 'active' : ''}`;
+            img.src = src;
+            img.alt = `Background ${index + 1}`;
+            container.appendChild(img);
+        });
+
+        const backgrounds = document.querySelectorAll('.background-image');
+
+        function transitionToIndex(newIndex) {
+            if (isTransitioning || newIndex === currentActive || newIndex < 0 || newIndex >= images.length) return;
+            
+            isTransitioning = true;
+            const prevActive = currentActive;
+            currentActive = newIndex;
+
+            backgrounds[prevActive].classList.remove('active');
+            backgrounds[currentActive].classList.add('active');
+
+            const onTransitionEnd = () => {
+                isTransitioning = false;
+                backgrounds[currentActive].removeEventListener('transitionend', onTransitionEnd);
+            };
+
+            backgrounds[currentActive].addEventListener('transitionend', onTransitionEnd);
+        }
+
+  
+  
+  const portfolioItems = document.querySelectorAll('.portfolio-hover-item');
+// Loop through each item in the order they appear
+portfolioItems.forEach((item, index) => {
+    // Do something with each item
+    console.log(`Item ${index + 1}:`, item);
+
+    // Example: Add a click event listener to each item
+    item.addEventListener('mouseenter', transitionToIndex(index));
 });
 
-  // Transition function
-  function transitionToIndex(newIndex) {
-  if (isTransitioning || newIndex === currentActive) return;
-  isTransitioning = true;
+   function setPadding() {
+    const element = document.querySelector('.content');
+    const screenWidth = window.innerWidth;
 
-  // Clean up previous listeners
-  images[currentActive].classList.remove('active');
-  
-  images[newIndex].classList.add('active');
-  
-  // Use proper transitionend handling
-  const handleTransitionEnd = () => {
-    isTransitioning = false;
-    images[newIndex].removeEventListener('transitionend', handleTransitionEnd);
-  };
-  
-  images[newIndex].addEventListener('transitionend', handleTransitionEnd);
-  currentActive = newIndex;
+    element.style.paddingTop = '30px';
+    element.style.paddingBottom = '30px';
 }
 
-  // Padding calculation (with debounce)
-  let resizeTimeout;
-function setPadding() {
-  const header = document.getElementById('header');
-  const footer = document.getElementById('footer-sections');
-  const content = document.getElementById('content');
-  
-  // Use getBoundingClientRect() for transformed elements
-  const headerRect = header.getBoundingClientRect();
-  const footerRect = footer.getBoundingClientRect();
-  
-  content.style.paddingTop = `${headerRect.height}px`;
-  content.style.paddingBottom = `${footerRect.height}px`;
-}
-  
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(setPadding, 100);
-  });
-  setPadding();
+// Set initial padding on page load
+setPadding();
+
+// Update padding on window resize
+window.addEventListener('resize', setPadding);
+   
 });
-</script>      
+</script>
+    </div>
+  </div>
+  </div>
     </div>
   </div>
 </section>
