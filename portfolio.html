@@ -1112,10 +1112,11 @@
 <!-- SKRYPT -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // Clean existing elements first
   const container = document.querySelector('.background-container');
   container.innerHTML = '';
   const images = [];
+  let isTransitioning = false;
+  let currentActive = 0;
 
   fetch(`/portfolio/order.txt?cache=${Date.now()}`)
     .then(response => {
