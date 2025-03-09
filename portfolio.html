@@ -1187,46 +1187,59 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
   // Transition function
+// Modified transition function
 function transitionToIndex(newIndex) {
-  if (isTransitioning || newIndex === currentActive) return;
+  if (newIndex === currentActive) return;
   
-  isTransitioning = true;
+  // Cancel any ongoing transitions
+  if (isTransitioning) {
+    images[currentActive].style.transition = 'none';
+    images[currentActive].style.opacity = '0';
+    images[currentActive].style.zIndex = '1';
+    isTransitioning = false;
+  }
+
   const prevActive = currentActive;
   currentActive = newIndex;
+  isTransitioning = true;
 
-  // Set up new image before transition
-  images[currentActive].style.zIndex = 2; // Bring to top
-  images[currentActive].style.opacity = 0; // Start transparent
+  // Set up new image
+  images[currentActive].style.zIndex = '2';
+  images[currentActive].style.opacity = '0';
   
-  // Force layout recalculation
+  // Force layout refresh
   void images[currentActive].offsetHeight;
 
   // Start transition
-  images[currentActive].style.opacity = 1;
+  images[currentActive].style.opacity = '1';
+  images[prevActive].style.opacity = '0';
 
-  const handleTransitionEnd = () => {
-    // Reset previous image's z-index after transition
-    images[prevActive].style.zIndex = 1;
+  const cleanUp = () => {
+    images[prevActive].style.zIndex = '1';
     isTransitioning = false;
-    images[currentActive].removeEventListener('transitionend', handleTransitionEnd);
+    images[currentActive].removeEventListener('transitionend', cleanUp);
   };
 
-  images[currentActive].addEventListener('transitionend', handleTransitionEnd);
+  images[currentActive].addEventListener('transitionend', cleanUp);
 }
 
-// Update your event listeners to use mouseenter instead of click
+// Add mouseleave handler to reset state
 document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  let touchTimer;
+  let timeoutId;
   
-  item.addEventListener('mouseenter', () => transitionToIndex(index));
-  
-  item.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    touchTimer = setTimeout(() => transitionToIndex(index), 100);
+  item.addEventListener('mouseenter', () => {
+    clearTimeout(timeoutId);
+    transitionToIndex(index);
   });
   
-  item.addEventListener('touchend', () => clearTimeout(touchTimer));
+  item.addEventListener('mouseleave', () => {
+    timeoutId = setTimeout(() => {
+      transitionToIndex(0); // Return to first image
+    }, 1000);
+  });
 });
+
+
 
   // Padding calculation (with debounce)
   let resizeTimeout;
