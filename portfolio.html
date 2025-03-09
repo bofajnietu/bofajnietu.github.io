@@ -1189,10 +1189,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const prevActive = currentActive;
   currentActive = newIndex;
 
-  // Bring new image to top layer FIRST
+  // Bring new image to top layer first
   images[currentActive].style.zIndex = 3; // Temporary highest z-index
   
-  // Start transitions on BOTH images
+  // Start transitions on both images
   images[prevActive].classList.remove('active');
   images[currentActive].classList.add('active');
 
@@ -1205,6 +1205,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
   images[currentActive].addEventListener('transitionend', handleTransitionEnd);
 }
+
+// Update your event listeners to use mouseenter instead of click
+document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
+  let touchTimer;
+  
+  item.addEventListener('mouseenter', () => transitionToIndex(index));
+  
+  item.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchTimer = setTimeout(() => transitionToIndex(index), 100);
+  });
+  
+  item.addEventListener('touchend', () => clearTimeout(touchTimer));
+});
 
   // Padding calculation (with debounce)
   let resizeTimeout;
