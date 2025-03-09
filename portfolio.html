@@ -1104,10 +1104,12 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
   filter: brightness(0.65) blur(4px) saturate(120%);
+  z-index: 1; /* Base z-index */
 }
 
 .background-image.active {
   opacity: 1;
+  z-index: 2; /* Active image should be on top */
 }
   .portfolio-hover-item-title span {
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -1181,22 +1183,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Transition function
   function transitionToIndex(newIndex) {
-    if (isTransitioning || newIndex === currentActive || newIndex < 0 || newIndex >= images.length) return;
-    
-    isTransitioning = true;
-    const prevActive = currentActive;
-    currentActive = newIndex;
+  if (isTransitioning || newIndex === currentActive) return;
+  
+  isTransitioning = true;
+  const prevActive = currentActive;
+  currentActive = newIndex;
 
-    images[prevActive].classList.remove('active');
-    images[currentActive].classList.add('active');
+  // Bring new image to top layer FIRST
+  images[currentActive].style.zIndex = 3; // Temporary highest z-index
+  
+  // Start transitions on BOTH images
+  images[prevActive].classList.remove('active');
+  images[currentActive].classList.add('active');
 
-    const handleTransitionEnd = () => {
-      isTransitioning = false;
-      images[currentActive].removeEventListener('transitionend', handleTransitionEnd);
-    };
+  const handleTransitionEnd = () => {
+    // Reset z-index after transition
+    images[currentActive].style.zIndex = 2;
+    isTransitioning = false;
+    images[currentActive].removeEventListener('transitionend', handleTransitionEnd);
+  };
 
-    images[currentActive].addEventListener('transitionend', handleTransitionEnd);
-  }
+  images[currentActive].addEventListener('transitionend', handleTransitionEnd);
+}
 
   // Padding calculation (with debounce)
   let resizeTimeout;
