@@ -1104,17 +1104,18 @@
   object-fit: cover;
   transition: opacity 0.5s ease-in-out;
   filter: brightness(0.65) blur(4px) saturate(120%);
-  opacity: 1;
-  z-index: 1; /* Base z-index */
+  opacity: 0;  /* Start with all images hidden */
+  z-index: 1;  /* Base z-index */
 }
 
 .background-image.active {
-  z-index: 2; /* Active image on top layer */
-  opacity: 1; /* Maintain full opacity */
+  z-index: 2;  /* Active image on top layer */
+  opacity: 1;  /* Active image is visible */
 }
-  /* Only the incoming image animates */
+
+/* Ensure the previous active image stays on top while fading out */
 .background-image:not(.active) {
-  transition: none; /* Prevent transitions on inactive images */
+  z-index: 3;  /* Place the fading image on top */
 }
   .portfolio-hover-item-title span {
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -1187,59 +1188,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
   // Transition function
-// Modified transition function
 function transitionToIndex(newIndex) {
-  if (newIndex === currentActive) return;
+  if (isTransitioning || newIndex === currentActive) return;
   
-  // Cancel any ongoing transitions
-  if (isTransitioning) {
-    images[currentActive].style.transition = 'none';
-    images[currentActive].style.opacity = '0';
-    images[currentActive].style.zIndex = '1';
-    isTransitioning = false;
-  }
-
+  isTransitioning = true;
   const prevActive = currentActive;
   currentActive = newIndex;
-  isTransitioning = true;
 
-  // Set up new image
-  images[currentActive].style.zIndex = '2';
-  images[currentActive].style.opacity = '0';
+  // Keep the previous active image fully visible at top layer
+  images[prevActive].classList.remove('active');
   
-  // Force layout refresh
-  void images[currentActive].offsetHeight;
-
-  // Start transition
-  images[currentActive].style.opacity = '1';
-  images[prevActive].style.opacity = '0';
-
-  const cleanUp = () => {
-    images[prevActive].style.zIndex = '1';
+  // Position the new image below
+  images[currentActive].style.opacity = 1;  // Start fully opaque
+  images[currentActive].classList.add('active');
+  
+  // Now fade out the top image
+  images[prevActive].style.opacity = 0;
+  
+  const handleTransitionEnd = () => {
     isTransitioning = false;
-    images[currentActive].removeEventListener('transitionend', cleanUp);
+    images[prevActive].removeEventListener('transitionend', handleTransitionEnd);
   };
 
-  images[currentActive].addEventListener('transitionend', cleanUp);
+  images[prevActive].addEventListener('transitionend', handleTransitionEnd);
 }
 
-// Add mouseleave handler to reset state
+// Update your event listeners to use mouseenter instead of click
 document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  let timeoutId;
+  let touchTimer;
   
-  item.addEventListener('mouseenter', () => {
-    clearTimeout(timeoutId);
-    transitionToIndex(index);
+  item.addEventListener('mouseenter', () => transitionToIndex(index));
+  
+  item.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchTimer = setTimeout(() => transitionToIndex(index), 100);
   });
   
-  item.addEventListener('mouseleave', () => {
-    timeoutId = setTimeout(() => {
-      transitionToIndex(0); // Return to first image
-    }, 1000);
-  });
+  item.addEventListener('touchend', () => clearTimeout(touchTimer));
 });
-
-
 
   // Padding calculation (with debounce)
   let resizeTimeout;
