@@ -1101,9 +1101,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 1;
   transition: opacity 0.5s ease-in-out;
   filter: brightness(0.65) blur(4px) saturate(120%);
+  opacity: 0; /* Start hidden */
   z-index: 1; /* Base z-index */
 }
 
@@ -1184,22 +1184,24 @@ document.addEventListener('DOMContentLoaded', function() {
   // Transition function
 function transitionToIndex(newIndex) {
   if (isTransitioning || newIndex === currentActive) return;
-  
+
   isTransitioning = true;
   const prevActive = currentActive;
   currentActive = newIndex;
 
-  // Bring new image to top layer
-  images[currentActive].style.zIndex = 2; // New image on top
-  images[prevActive].style.zIndex = 1; // Old image to bottom
+  // Bring new image to the top layer
+  images[currentActive].style.zIndex = 2;
 
-  // Start transition on the new image only
-  images[currentActive].style.opacity = 0; // Start hidden
-  setTimeout(() => {
-    images[currentActive].style.opacity = 1; // Fade in
-  }, 10);
+  // Fade in the new image
+  images[currentActive].style.opacity = 1;
 
+  // Fade out the old image
+  images[prevActive].style.opacity = 0;
+
+  // Wait for the transition to complete
   const handleTransitionEnd = () => {
+    // Reset z-index of the old image after transition
+    images[prevActive].style.zIndex = 1;
     isTransitioning = false;
     images[currentActive].removeEventListener('transitionend', handleTransitionEnd);
   };
