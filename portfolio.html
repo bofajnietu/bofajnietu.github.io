@@ -1175,7 +1175,7 @@ document.addEventListener('DOMContentLoaded', function() {
          
          item.addEventListener('touchstart', (e) => {
            e.preventDefault();
-           touchTimer = setTimeout(() => transitionToIndex(index), 100);
+           touchTimer = setTimeout(() => transitionToIndex(index), 2);
          });
          
          item.addEventListener('touchend', () => clearTimeout(touchTimer));
