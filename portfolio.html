@@ -1090,8 +1090,7 @@
 
 /* Background images container */
 .background-container {
-  z-index: 1;
-  background: #b1b1b1;
+  background: #ff0000;
 }
 
 /* Individual background images */
@@ -1102,15 +1101,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: opacity 0.5s ease-in-out;
-  filter: brightness(0.65) blur(4px) saturate(120%);
-  opacity: 0;  /* Start with all images hidden */
+  transition: none;
+  filter: brightness(0.7) blur(4px) saturate(120%);
+  opacity: 1;
   z-index: 1;  /* Base z-index */
 }
 
 .background-image.active {
-  z-index: 2;  /* Active image on top layer */
-  opacity: 1;  /* Active image is visible */
+  z-index: 2; /* Top layer */
+  transition: opacity 5s ease-in-out;
 }
 
 /* Ensure the previous active image stays on top while fading out */
@@ -1190,22 +1189,29 @@ document.addEventListener('DOMContentLoaded', function() {
   // Transition function
 function transitionToIndex(newIndex) {
   if (isTransitioning || newIndex === currentActive) return;
-  
+
   isTransitioning = true;
   const prevActive = currentActive;
   currentActive = newIndex;
 
-  // Keep the previous active image fully visible at top layer
-  images[prevActive].classList.remove('active');
+  // Set up layers
+  images[prevActive].style.transition = 'opacity 1s ease-in-out'; // Enable transition on outgoing layer
+  images[currentActive].style.zIndex = '2'; // Bring new image to top
   
-  // Position the new image below
-  images[currentActive].style.opacity = 1;  // Start fully opaque
-  images[currentActive].classList.add('active');
-  
-  // Now fade out the top image
-  images[prevActive].style.opacity = 0;
-  
+  // Set initial states
+  images[prevActive].style.opacity = '1'; // Ensure outgoing layer is visible
+  images[currentActive].style.opacity = '1'; // Ensure incoming layer is visible
+
+  // Force layout refresh
+  void images[prevActive].offsetHeight;
+
+  // Start transition
+  images[prevActive].style.opacity = '0'; // Only transition the top layer
+
   const handleTransitionEnd = () => {
+    // Reset previous layer's z-index and transition
+    images[prevActive].style.zIndex = '1';
+    images[prevActive].style.transition = 'none';
     isTransitioning = false;
     images[prevActive].removeEventListener('transitionend', handleTransitionEnd);
   };
@@ -1213,18 +1219,19 @@ function transitionToIndex(newIndex) {
   images[prevActive].addEventListener('transitionend', handleTransitionEnd);
 }
 
-// Update your event listeners to use mouseenter instead of click
+// Add hover intent detection
+let hoverTimeout;
 document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  let touchTimer;
-  
-  item.addEventListener('mouseenter', () => transitionToIndex(index));
-  
-  item.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    touchTimer = setTimeout(() => transitionToIndex(index), 100);
+  item.addEventListener('mouseenter', () => {
+    clearTimeout(hoverTimeout);
+    transitionToIndex(index);
   });
   
-  item.addEventListener('touchend', () => clearTimeout(touchTimer));
+  item.addEventListener('mouseleave', () => {
+    hoverTimeout = setTimeout(() => {
+      transitionToIndex(0); // Return to default image
+    }, 300);
+  });
 });
 
   // Padding calculation (with debounce)
