@@ -1091,7 +1091,7 @@
 /* Background images container */
 .background-container {
   z-index: 1;
-  background: #0000ff;
+  background: #b1b1b1;
 }
 
 .background-image {
@@ -1223,19 +1223,7 @@ function transitionToIndex(newIndex) {
   images[currentActive].addEventListener('transitionend', handleNewImageTransition);
 }
 
-// Update your event listeners to use mouseenter instead of click
-document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  
-let interval;
-  item.addEventListener("mouseenter", () => {
-    interval = setInterval(() => transitionToIndex(index), 100); // Runs every 100ms (adjust as needed)
-});
 
-item.addEventListener("mouseleave", () => {
-    clearInterval(interval);
-});
-  
-});
 
   // Padding calculation (with debounce)
   let resizeTimeout;
