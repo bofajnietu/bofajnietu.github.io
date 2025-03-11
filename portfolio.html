@@ -1094,7 +1094,6 @@
   background: #0000ff;
 }
 
-/* Individual background images */
 .background-image {
   position: absolute;
   top: 0;
@@ -1102,20 +1101,19 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.65) blur(4px) saturate(120%);
-  opacity: 0;  /* Start with all images hidden */
-  z-index: 1;  /* Base z-index */
+  filter: brightness(0.7) blur(4px) saturate(120%);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1; /* Base z-index */
 }
 
 .background-image.active {
-  z-index: 2;  /* Active image on top layer */
-  opacity: 1;  /* Active image is visible */
-  transition: opacity 0.5s ease-in-out;
+  opacity: 1; /* Active image is visible */
 }
 
-/* Ensure the previous active image stays on top while fading out */
-.background-image:not(.active) {
-  z-index: 3;  /* Place the fading image on top */
+/* Image that's being transitioned away */
+.background-image.transitioning {
+  z-index: 3; /* Keep transitioning image on top until fade completes */
 }
   .portfolio-hover-item-title span {
   text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
@@ -1195,22 +1193,33 @@ function transitionToIndex(newIndex) {
   const prevActive = currentActive;
   currentActive = newIndex;
 
-  // Keep the previous active image fully visible at top layer
-  images[prevActive].classList.remove('active');
+  // Add a transitioning class to manage z-index during transition
+  images[prevActive].classList.add('transitioning');
   
-  // Position the new image below
-  images[currentActive].style.opacity = 1;  // Start fully opaque
+  // Make the new image visible on top
+  images[currentActive].style.zIndex = 4; // Higher than transitioning images
   images[currentActive].classList.add('active');
   
-  // Now fade out the top image
-  images[prevActive].style.opacity = 0;
-  
-  const handleTransitionEnd = () => {
-    isTransitioning = false;
-    images[prevActive].removeEventListener('transitionend', handleTransitionEnd);
+  // Wait for the new image to fully appear
+  const handleNewImageTransition = () => {
+    // Now fade out the previous image
+    images[prevActive].classList.remove('active');
+    
+    // When previous image is fully invisible, clean up
+    const handlePrevImageTransition = () => {
+      images[prevActive].classList.remove('transitioning');
+      images[prevActive].style.zIndex = '';
+      images[currentActive].style.zIndex = '';
+      isTransitioning = false;
+      
+      images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
+    };
+    
+    images[prevActive].addEventListener('transitionend', handlePrevImageTransition);
+    images[currentActive].removeEventListener('transitionend', handleNewImageTransition);
   };
-
-  images[prevActive].addEventListener('transitionend', handleTransitionEnd);
+  
+  images[currentActive].addEventListener('transitionend', handleNewImageTransition);
 }
 
 // Update your event listeners to use mouseenter instead of click
