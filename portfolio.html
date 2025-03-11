@@ -1165,26 +1165,6 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(img);
         images.push(img);
       });
-
-      // Interaction handlers
-      document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-        let touchTimer;
-        
-        item.addEventListener('mouseenter', () => transitionToIndex(index));
-        
-        item.addEventListener('touchstart', (e) => {
-          e.preventDefault();
-          touchTimer = setTimeout(() => transitionToIndex(index), 100);
-        });
-        
-        item.addEventListener('touchend', () => clearTimeout(touchTimer));
-      });
-    })
-    .catch(error => {
-      console.error('Fetch error:', error);
-      portfolioList.innerHTML = '<li>Error loading content</li>';
-    });
-
   // Transition function
 function transitionToIndex(newIndex) {
   if (isTransitioning || newIndex === currentActive) return;
@@ -1224,16 +1204,16 @@ function transitionToIndex(newIndex) {
 
 // Update your event listeners to use mouseenter instead of click
 document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  let touchTimer;
   
-  item.addEventListener('mouseenter', () => transitionToIndex(index));
+let interval;
+  item.addEventListener("mouseenter", () => {
+    interval = setInterval(() => transitionToIndex(index), 100); // Runs every 100ms (adjust as needed)
+});
+
+item.addEventListener("mouseleave", () => {
+    clearInterval(interval);
+});
   
-  item.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    touchTimer = setTimeout(() => transitionToIndex(index), 100);
-  });
-  
-  item.addEventListener('touchend', () => clearTimeout(touchTimer));
 });
 
   // Padding calculation (with debounce)
