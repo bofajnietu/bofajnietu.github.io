@@ -1218,20 +1218,19 @@ function transitionToIndex(newIndex) {
 
   images[prevActive].addEventListener('transitionend', handleTransitionEnd);
 }
-
-// Add hover intent detection
-let hoverTimeout;
+  
+// Update your event listeners to use mouseenter instead of click
 document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
-  item.addEventListener('mouseenter', () => {
-    clearTimeout(hoverTimeout);
-    transitionToIndex(index);
+  let touchTimer;
+  
+  item.addEventListener('mouseenter', () => transitionToIndex(index));
+  
+  item.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchTimer = setTimeout(() => transitionToIndex(index), 100);
   });
   
-  item.addEventListener('mouseleave', () => {
-    hoverTimeout = setTimeout(() => {
-      transitionToIndex(0); // Return to default image
-    }, 300);
-  });
+  item.addEventListener('touchend', () => clearTimeout(touchTimer));
 });
 
   // Padding calculation (with debounce)
