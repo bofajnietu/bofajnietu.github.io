@@ -1188,39 +1188,61 @@ document.addEventListener('DOMContentLoaded', function() {
       
   // Transition function
 function transitionToIndex(newIndex) {
-  if (isTransitioning || newIndex === currentActive) return;
+  // Don't return if we're transitioning - instead, cancel the current transition
+  if (newIndex === currentActive) return;
   
-  isTransitioning = true;
+  // Store the previous active index
   const prevActive = currentActive;
   currentActive = newIndex;
-
-  // Add a transitioning class to manage z-index during transition
+  
+  // Clear any existing transition event listeners to prevent them from firing
+  images.forEach(img => {
+    img.removeEventListener('transitionend', handleNewImageTransition);
+    img.removeEventListener('transitionend', handlePrevImageTransition);
+  });
+  
+  // Reset any images in transition state
+  images.forEach((img, i) => {
+    if (i !== prevActive && i !== currentActive) {
+      img.classList.remove('active', 'transitioning');
+      img.style.zIndex = '1';
+    }
+  });
+  
+  // Add transitioning class to previous active image
   images[prevActive].classList.add('transitioning');
+  images[prevActive].style.zIndex = '3';
   
   // Make the new image visible on top
-  images[currentActive].style.zIndex = 4; // Higher than transitioning images
+  images[currentActive].style.zIndex = '4';
   images[currentActive].classList.add('active');
   
-  // Wait for the new image to fully appear
-  const handleNewImageTransition = () => {
-    // Now fade out the previous image
+  // Define our event handlers
+  function handleNewImageTransition() {
     images[prevActive].classList.remove('active');
-    
-    // When previous image is fully invisible, clean up
-    const handlePrevImageTransition = () => {
-      images[prevActive].classList.remove('transitioning');
-      images[prevActive].style.zIndex = '';
-      images[currentActive].style.zIndex = '';
-      isTransitioning = false;
-      
-      images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
-    };
-    
     images[prevActive].addEventListener('transitionend', handlePrevImageTransition);
-    images[currentActive].removeEventListener('transitionend', handleNewImageTransition);
-  };
+  }
   
-  images[currentActive].addEventListener('transitionend', handleNewImageTransition);
+  function handlePrevImageTransition() {
+    images[prevActive].classList.remove('transitioning');
+    images[prevActive].style.zIndex = '1';
+    images[currentActive].style.zIndex = '2';
+    images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
+  }
+  
+  // Add event listener to new active image
+  images[currentActive].addEventListener('transitionend', handleNewImageTransition, { once: true });
+  
+  // Set a backup timeout to ensure transition completes even if events don't fire
+  setTimeout(() => {
+    images[prevActive].classList.remove('active', 'transitioning');
+    images[prevActive].style.zIndex = '1';
+    images[currentActive].style.zIndex = '2';
+    
+    // Remove any lingering event listeners
+    images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
+    images[currentActive].removeEventListener('transitionend', handleNewImageTransition);
+  }, 1000); // 1000ms should be enough time for a 500ms transition to complete
 }
 
 
