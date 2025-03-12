@@ -1125,6 +1125,7 @@
 }
 </style>
 <!-- SKRYPT -->
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const container = document.querySelector('.background-container');
@@ -1132,8 +1133,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const images = [];
   let isTransitioning = false;
   let currentActive = 0;
-
-  fetch(`/portfolio/order.txt?cache=${Date.now()}`)
+  fetch(/portfolio/order.txt?cache=${Date.now()})
     .then(response => {
       if (!response.ok) throw new Error('Network response was not ok');
       return response.text();
@@ -1142,10 +1142,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const pages = data.split('\n')
         .filter(line => line.trim())
         .map(p => p.replace('.html', ''));
-
       // Generate menu items
       const portfolioList = document.getElementById('portfolioList');
-      portfolioList.innerHTML = pages.map((page, index) => `
+      portfolioList.innerHTML = pages.map((page, index) => 
         <li style="pointer-events: auto;">
           <a class="portfolio-hover-item" 
              href="/portfolio/${page}">
@@ -1154,30 +1153,27 @@ document.addEventListener('DOMContentLoaded', function() {
             </h1>
           </a>
         </li>
-      `).join('');
-
+      ).join('');
       // Create and preload images
       pages.forEach((page, index) => {
         const img = new Image();
-        img.className = `background-image ${index === 0 ? 'active' : ''}`;
-        img.src = `/portfolio/images/${page}.jpg`;
+        img.className = background-image ${index === 0 ? 'active' : ''};
+        img.src = /portfolio/images/${page}.jpg;
         img.onerror = () => console.error('Failed to load image:', img.src);
         container.appendChild(img);
         images.push(img);
       });
-
-
        // Interaction handlers
        document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
          let touchTimer;
-         
+
          item.addEventListener('mouseenter', () => transitionToIndex(index));
-         
+
          item.addEventListener('touchstart', (e) => {
            e.preventDefault();
            touchTimer = setTimeout(() => transitionToIndex(index), 2);
          });
-         
+
          item.addEventListener('touchend', () => clearTimeout(touchTimer));
        });
      })
@@ -1185,84 +1181,58 @@ document.addEventListener('DOMContentLoaded', function() {
        console.error('Fetch error:', error);
        portfolioList.innerHTML = '<li>Error loading content</li>';
      });
-      
+
   // Transition function
 function transitionToIndex(newIndex) {
-  // Don't return if we're transitioning - instead, cancel the current transition
-  if (newIndex === currentActive) return;
-  
-  // Store the previous active index
+  if (isTransitioning || newIndex === currentActive) return;
+
+  isTransitioning = true;
   const prevActive = currentActive;
   currentActive = newIndex;
-  
-  // Clear any existing transition event listeners to prevent them from firing
-  images.forEach(img => {
-    img.removeEventListener('transitionend', handleNewImageTransition);
-    img.removeEventListener('transitionend', handlePrevImageTransition);
-  });
-  
-  // Reset any images in transition state
-  images.forEach((img, i) => {
-    if (i !== prevActive && i !== currentActive) {
-      img.classList.remove('active', 'transitioning');
-      img.style.zIndex = '1';
-    }
-  });
-  
-  // Add transitioning class to previous active image
+  // Add a transitioning class to manage z-index during transition
   images[prevActive].classList.add('transitioning');
-  images[prevActive].style.zIndex = '3';
-  
+
   // Make the new image visible on top
-  images[currentActive].style.zIndex = '4';
+  images[currentActive].style.zIndex = 4; // Higher than transitioning images
   images[currentActive].classList.add('active');
-  
-  // Define our event handlers
-  function handleNewImageTransition() {
+
+  // Wait for the new image to fully appear
+  const handleNewImageTransition = () => {
+    // Now fade out the previous image
     images[prevActive].classList.remove('active');
+
+    // When previous image is fully invisible, clean up
+    const handlePrevImageTransition = () => {
+      images[prevActive].classList.remove('transitioning');
+      images[prevActive].style.zIndex = '';
+      images[currentActive].style.zIndex = '';
+      isTransitioning = false;
+
+      images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
+    };
+
     images[prevActive].addEventListener('transitionend', handlePrevImageTransition);
-  }
-  
-  function handlePrevImageTransition() {
-    images[prevActive].classList.remove('transitioning');
-    images[prevActive].style.zIndex = '1';
-    images[currentActive].style.zIndex = '2';
-    images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
-  }
-  
-  // Add event listener to new active image
-  images[currentActive].addEventListener('transitionend', handleNewImageTransition, { once: true });
-  
-  // Set a backup timeout to ensure transition completes even if events don't fire
-  setTimeout(() => {
-    images[prevActive].classList.remove('active', 'transitioning');
-    images[prevActive].style.zIndex = '1';
-    images[currentActive].style.zIndex = '2';
-    
-    // Remove any lingering event listeners
-    images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
     images[currentActive].removeEventListener('transitionend', handleNewImageTransition);
-  }, 1000); // 1000ms should be enough time for a 500ms transition to complete
+  };
+
+  images[currentActive].addEventListener('transitionend', handleNewImageTransition);
 }
-
-
-
   // Padding calculation (with debounce)
   let resizeTimeout;
 function setPadding() {
   const header = document.getElementById('header');
   const footer = document.getElementById('footer-sections');
   const content = document.getElementById('content');
-  
+
   // Use getBoundingClientRect() for transformed elements
   const headerRect = header.getBoundingClientRect();
   const footerRect = footer.getBoundingClientRect();
-  
-  content.style.paddingTop = `${headerRect.height}px`;
-  content.style.paddingBottom = `${footerRect.height}px`;
+
+  content.style.paddingTop = ${headerRect.height}px;
+  content.style.paddingBottom = ${footerRect.height}px;
 }
 });
-</script>      
+</script>    
     </div>
   </div>
 </section>
