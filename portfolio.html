@@ -1133,6 +1133,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const images = [];
   let isTransitioning = false;
   let currentActive = 0;
+  let transitionQueue = [];
 
   fetch(`/portfolio/order.txt?cache=${Date.now()}`)
     .then(response => {
@@ -1188,9 +1189,33 @@ document.addEventListener('DOMContentLoaded', function() {
      });
       
   // Transition function
+
 function transitionToIndex(newIndex) {
-  if (isTransitioning || newIndex === currentActive) return;
+  // Add to queue if not already in queue
+  if (!transitionQueue.includes(newIndex) && newIndex !== currentActive) {
+    transitionQueue.push(newIndex);
+  }
   
+  // If not transitioning, process the queue
+  if (!isTransitioning) {
+    processNextTransition();
+  }
+}
+
+function processNextTransition() {
+  // If queue is empty, nothing to do
+  if (transitionQueue.length === 0) return;
+  
+  // Get next item from queue
+  const newIndex = transitionQueue.shift();
+  
+  // If it's the current index, skip to next
+  if (newIndex === currentActive) {
+    processNextTransition();
+    return;
+  }
+  
+  // Start transition
   isTransitioning = true;
   const prevActive = currentActive;
   currentActive = newIndex;
@@ -1215,6 +1240,9 @@ function transitionToIndex(newIndex) {
       isTransitioning = false;
       
       images[prevActive].removeEventListener('transitionend', handlePrevImageTransition);
+      
+      // Process next transition when this one completes
+      processNextTransition();
     };
     
     images[prevActive].addEventListener('transitionend', handlePrevImageTransition);
