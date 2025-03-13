@@ -22720,7 +22720,7 @@ img[data-src]:not([src]):not([srcset]) {
 }
 
 .tweak-portfolio-grid-overlay-show-text-before-hover .portfolio-grid-overlay .grid-item .portfolio-overlay {
-    opacity: .85
+    opacity: 1
 }
 
 @media (hover: hover) {
@@ -22738,7 +22738,7 @@ img[data-src]:not([src]):not([srcset]) {
 }
 
 .tweak-portfolio-grid-overlay-show-text-after-hover .portfolio-grid-overlay .grid-item:focus .portfolio-overlay {
-    opacity: .85
+    opacity: 1
 }
 
 @media (hover: none) {
@@ -22753,7 +22753,7 @@ img[data-src]:not([src]):not([srcset]) {
     }
 
     .tweak-portfolio-grid-overlay-show-text-after-hover .portfolio-grid-overlay .grid-item:hover .portfolio-overlay {
-        opacity: .85
+        opacity: 1
     }
 
     .tweak-portfolio-grid-overlay-show-text-after-hover .portfolio-grid-overlay .grid-item:not(:hover):focus:not(:focus-visible) .portfolio-text,.tweak-portfolio-grid-overlay-show-text-after-hover .portfolio-grid-overlay .grid-item:not(:hover):focus:not(:focus-visible) .portfolio-overlay {
