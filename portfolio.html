@@ -1128,6 +1128,26 @@
     .portfolio-hover-item:hover .portfolio-hover-item-title span {
   opacity: 1;
 }
+
+  
+  .portfolio-hover-item-content {
+  text-align: center;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+/* Non-mobile styles */
+@media (hover: hover) and (pointer: fine) {
+  .portfolio-hover-items-list {
+    flex-direction: row !important;
+  }
+
+  li:not(:last-child) .portfolio-hover-item-content::after {
+    content: "/";
+    margin: 0 1rem;
+    display: inline-block;
+  }
+}
 </style>
 <!-- SKRYPT -->
 
