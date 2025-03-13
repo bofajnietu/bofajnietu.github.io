@@ -1120,6 +1120,11 @@
   transition: opacity 0.1s ease-in-out;
   opacity: 0.8;
 }
+  @media (pointer: coarse) and (max-width: 768px) {
+  .portfolio-hover-item-title span {
+    opacity: 1 !important; /* Force full white on mobile */
+  }
+}
     .portfolio-hover-item:hover .portfolio-hover-item-title span {
   opacity: 1;
 }
@@ -1128,6 +1133,7 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    const isMobile = window.matchMedia('(pointer: coarse) and (max-width: 768px)').matches; 
   const container = document.querySelector('.background-container');
   container.innerHTML = '';
   const images = [];
@@ -1166,6 +1172,14 @@ document.addEventListener('DOMContentLoaded', function() {
         img.onerror = () => console.error('Failed to load image:', img.src);
         container.appendChild(img);
         images.push(img);
+
+        if (isMobile) {
+          let totalItems = pages.length;
+          setInterval(() => {
+            const nextIndex = (currentActive + 1) % totalItems;
+            transitionToIndex(nextIndex);
+          }, 5000); // 5-second interval between transitions
+        }
       });
 
 
@@ -1173,12 +1187,13 @@ document.addEventListener('DOMContentLoaded', function() {
        document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
          let touchTimer;
          
-         item.addEventListener('mouseenter', () => transitionToIndex(index));
-         
-         item.addEventListener('touchstart', (e) => {
-           e.preventDefault();
-           touchTimer = setTimeout(() => transitionToIndex(index), 100);
-         });
+         if (!isMobile) {
+  item.addEventListener('mouseenter', () => transitionToIndex(index));
+  item.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchTimer = setTimeout(() => transitionToIndex(index), 100);
+  });
+}
          
          item.addEventListener('touchend', () => clearTimeout(touchTimer));
        });
@@ -1191,12 +1206,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Transition function
 
 function transitionToIndex(newIndex) {
-  // Add to queue if not already in queue
-  if (!transitionQueue.includes(newIndex) && newIndex !== currentActive) {
-    transitionQueue.push(newIndex);
+  if (isMobile) {
+    transitionQueue = [newIndex]; // Mobile gets immediate priority
+  } else {
+    if (!transitionQueue.includes(newIndex) && newIndex !== currentActive) {
+      transitionQueue.push(newIndex);
+    }
   }
-  
-  // If not transitioning, process the queue
+
   if (!isTransitioning) {
     processNextTransition();
   }
