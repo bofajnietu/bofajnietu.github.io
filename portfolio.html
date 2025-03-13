@@ -1130,7 +1130,8 @@
 }
 
   
-  .portfolio-hover-item-content {
+/* Add to existing styles */
+.portfolio-hover-item-title span {
   text-align: center;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -1142,9 +1143,9 @@
     flex-direction: row !important;
   }
 
-  li:not(:last-child) .portfolio-hover-item-content::after {
+  li:not(:last-child) .portfolio-hover-item-title::after {
     content: "/";
-    margin: 0 1rem;
+    margin: 0 1rem; /* Same margins as the span */
     display: inline-block;
   }
 }
