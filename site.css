@@ -12905,19 +12905,19 @@ h1 {
 
 @media screen and (max-width: 767px ) and (orientation: portrait) {
     h1 {
-        font-size:calc((var(--heading-1-size-value) - 1) * calc(.012 * min(100vh, 900px)) + 1rem)
+        font-size:calc((var(--heading-1-size-value) - 1) * calc(.012 * min(100vh, 900px)) + 2rem)
     }
 }
 
 @media screen and (min-width: 768px ),screen and (max-width:calc(2120px - 1px)) and (orientation:landscape) {
     h1 {
-        font-size:calc((var(--heading-1-size-value) - 1) * 0.7vw + 1rem)
+        font-size:calc((var(--heading-1-size-value) - 1) * 1vw + 1rem)
     }
 }
 
 @media screen and (min-width: 2120px) {
     h1 {
-        font-size:calc(var(--heading-1-size-value) * 1rem)
+        font-size:calc(var(--heading-1-size-value) * 1.5rem)
     }
 }
 
