@@ -1173,15 +1173,28 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(img);
         images.push(img);
 
-        if (isMobile) {
-          let totalItems = pages.length;
-          setInterval(() => {
-            const nextIndex = (currentActive + 1) % totalItems;
-            transitionToIndex(nextIndex);
-          }, 5000); // 5-second interval between transitions
-        }
       });
 
+       if (isMobile) {
+  let totalItems = pages.length;
+  let rotationTimeout;
+
+  const startRotation = () => {
+    clearTimeout(rotationTimeout);
+    rotationTimeout = setTimeout(() => {
+      const nextIndex = (currentActive + 1) % totalItems;
+      transitionToIndex(nextIndex);
+      startRotation();
+    }, 5000); // 5s interval between transitions
+  };
+
+  // Initial delay to match first transition timing
+  rotationTimeout = setTimeout(() => {
+    transitionToIndex(1 % totalItems);
+    startRotation();
+  }, 5000);
+}
+        
 
        // Interaction handlers
        document.querySelectorAll('.portfolio-hover-item').forEach((item, index) => {
