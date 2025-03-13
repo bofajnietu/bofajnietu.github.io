@@ -23068,7 +23068,7 @@ img[data-src]:not([src]):not([srcset]) {
     position: relative;
     max-width: 100%;
     margin: 0;
-    opacity: 1
+    opacity: 1;
     line-height: 1.2
 }
 
