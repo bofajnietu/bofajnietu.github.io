@@ -3,3 +3,4 @@ bluszczanska.html
 balkon.html
 kijowska.html
 taras_planety.html
+test.html
