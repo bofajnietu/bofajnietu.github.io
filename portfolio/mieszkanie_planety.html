@@ -1216,7 +1216,7 @@ videoContainer.className = 'video-container';
 
     if (isImage(item.content)) {
       const img = document.createElement('img');
-      img.src = "/portfolio/images/${currentPage}/" + item.content;
+      img.src = `/portfolio/images/${currentPage}/${item.content}`;
       img.className = 'custom-gallery__image';
       img.alt = `Obraz ${index + 1}`;
       element.appendChild(img);
