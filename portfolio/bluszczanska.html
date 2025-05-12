@@ -1183,6 +1183,7 @@ TYTUŁ
 
   const container_parent = document.getElementById('custom-gallery-container');
   const container = document.getElementById('custom-gallery-items');
+  let currentPage = window.location.pathname.split('/').pop().replace(/\.html$/, '');
 
 // Helper function to check if a URL is a video link.
 function isVideo(url) {
@@ -1199,7 +1200,7 @@ videoContainer.className = 'video-container';
   // Insert the video element.
   videoContainer.innerHTML = `
     <video autoplay muted loop playsinline class="rounded-video">
-      <source src="/portfolio/images/${videoItem.content}" type="video/mp4">
+<source src="/portfolio/images/${currentPage}/${videoItem.content}" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   `;
@@ -1219,7 +1220,7 @@ videoContainer.className = 'video-container';
 
     if (isImage(item.content)) {
       const img = document.createElement('img');
-      img.src = "/portfolio/images/" + item.content;
+      img.src = `/portfolio/images/${currentPage}/${item.content}`;
       img.className = 'custom-gallery__image';
       img.alt = `Obraz ${index + 1}`;
       element.appendChild(img);
