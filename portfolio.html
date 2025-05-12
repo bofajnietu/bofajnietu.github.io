@@ -1199,7 +1199,7 @@ document.addEventListener('DOMContentLoaded', function() {
       pages.forEach((page, index) => {
         const img = new Image();
         img.className = `background-image ${index === 0 ? 'active' : ''}`;
-        img.src = `/portfolio/images/${page}.jpg`;
+        img.src = `/portfolio/images/${page}/${page}.jpg`;
         img.onerror = () => console.error('Failed to load image:', img.src);
         container.appendChild(img);
         images.push(img);
